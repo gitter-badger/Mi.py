@@ -1,0 +1,151 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/abc/ext/context.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 218,
+      "code": {
+        "startLine": 1,
+        "length": 218,
+        "offset": 0,
+        "surroundingCode": "from abc import ABC, abstractmethod\nfrom typing import Any, Dict, Tuple\n\nclass AbstractContext(ABC):\n    @abstractmethod\n    async def invoke(self, command, /, *args: Tuple[Any], **kwargs: Dict[Any, Any]):\n        pass"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection",
+    "affectWholeFile": "true"
+  },
+  "hash": "-8786872286156171118"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/abc/note.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 514,
+      "code": {
+        "startLine": 1,
+        "length": 514,
+        "offset": 0,
+        "surroundingCode": "from abc import ABC, abstractmethod\nfrom typing import Optional\n\n\nclass AbstractNote(ABC):\n    @abstractmethod\n    def emoji_count(self) -> int:\n        \"\"\"\n        ???????emoji???????????????\n\n        Returns\n        -------\n        int\n            ???????????\n        \"\"\"\n\n    @abstractmethod\n    async def delete(self) -> bool:\n        \"\"\"\n        ????ID??????????\n\n        returns\n        -------\n        is_success: bool\n            ???????\n        status_code: int\n            HTTP ?????????????\n        \"\"\""
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "3052051803621599959"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/__init__.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 45,
+      "code": {
+        "startLine": 1,
+        "length": 45,
+        "offset": 0,
+        "surroundingCode": "from .commands import *\nfrom .tasks import *"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "-5358464658782618377"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/types/chat.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 280,
+      "code": {
+        "startLine": 1,
+        "length": 280,
+        "offset": 0,
+        "surroundingCode": "from typing import List, TypedDict\n\nfrom mi.types.user import User\n\n\nclass Chat(TypedDict):\n    id: str\n    created_at: str\n    text: str\n    user_id: str\n    user: User\n    recipient_id: str\n    recipient: str\n    group_id: str\n    file_id: str\n    is_read: bool\n    reads: List"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "-8253008773988716331"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/router.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 2155
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "2637673642364005947"
+}]}

@@ -1,0 +1,15 @@
+{
+  "total": 52,
+  "tools inspection": {
+    "Code Inspection": 52
+  },
+  "attributes": {
+    "vcs": {
+      "sarifIdea": {
+        "repositoryUri": "https://github.com/yupix/Mi.py",
+        "revisionId": "f56dc1acb520bfa33e6212d8e148e72fc219dd83",
+        "branch": "master"
+      }
+    }
+  }
+}
