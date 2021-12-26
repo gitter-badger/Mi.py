@@ -11,25 +11,18 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/abc/ext/context.py",
+      "path": "mi/ext/commands/cog.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 218,
-      "code": {
-        "startLine": 1,
-        "length": 218,
-        "offset": 0,
-        "surroundingCode": "from abc import ABC, abstractmethod\nfrom typing import Any, Dict, Tuple\n\nclass AbstractContext(ABC):\n    @abstractmethod\n    async def invoke(self, command, /, *args: Tuple[Any], **kwargs: Dict[Any, Any]):\n        pass"
-      }
+      "length": 4873
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection",
-    "affectWholeFile": "true"
+    "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-8786872286156171118"
+  "hash": "3794601824053551871"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -43,24 +36,18 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/abc/note.py",
+      "path": "mi/ext/commands/core.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 514,
-      "code": {
-        "startLine": 1,
-        "length": 514,
-        "offset": 0,
-        "surroundingCode": "from abc import ABC, abstractmethod\nfrom typing import Optional\n\n\nclass AbstractNote(ABC):\n    @abstractmethod\n    def emoji_count(self) -> int:\n        \"\"\"\n        ???????emoji???????????????\n\n        Returns\n        -------\n        int\n            ???????????\n        \"\"\"\n\n    @abstractmethod\n    async def delete(self) -> bool:\n        \"\"\"\n        ????ID??????????\n\n        returns\n        -------\n        is_success: bool\n            ???????\n        status_code: int\n            HTTP ?????????????\n        \"\"\""
-      }
+      "length": 6938
     }
   ],
   "attributes": {
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "3052051803621599959"
+  "hash": "421196031704983785"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -74,16 +61,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/ext/__init__.py",
+      "path": "mi/chat.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 45,
+      "length": 1189,
       "code": {
         "startLine": 1,
-        "length": 45,
+        "length": 1189,
         "offset": 0,
-        "surroundingCode": "from .commands import *\nfrom .tasks import *"
+        "surroundingCode": "from __future__ import annotations\n\nfrom typing import List, TYPE_CHECKING\n\nfrom .abc.chat import AbstractChatContent\nfrom .types.chat import Chat as ChatPayload\nfrom .user import User\n\n__all__ = ['Chat']\n\nif TYPE_CHECKING:\n    from mi.state import ConnectionState\n\n\nclass Chat(AbstractChatContent):\n    \"\"\"\n    ??????????\n    \"\"\"\n\n    def __init__(self, data: ChatPayload, state: ConnectionState):\n        self.id: str = data[\"id\"]\n        self.created_at: str = data[\"created_at\"]\n        self.content: str = data[\"text\"]\n        self.user_id: str = data[\"user_id\"]\n        self.author: User = User(data[\"user\"], state=state)\n        self.recipient_id: str = data[\"recipient_id\"]\n        self.recipient: str = data[\"recipient\"]\n        self.group_id: str = data[\"group_id\"]\n        self.file_id: str = data[\"file_id\"]\n        self.is_read: bool = data[\"is_read\"]\n        self.reads: List = data[\"reads\"]\n        self._state = state\n\n    async def delete(self) -> bool:\n        \"\"\"\n        ?????????????????????????????\n\n        Returns\n        -------\n        bool:\n            ???????\n        \"\"\"\n        res = await self._state.delete_chat(message_id=self.id)\n        return bool(res)"
       }
     }
   ],
@@ -91,7 +78,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-5358464658782618377"
+  "hash": "8353087150260882457"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -105,16 +92,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/types/chat.py",
+      "path": "mi/emoji.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 280,
+      "length": 879,
       "code": {
         "startLine": 1,
-        "length": 280,
+        "length": 879,
         "offset": 0,
-        "surroundingCode": "from typing import List, TypedDict\n\nfrom mi.types.user import User\n\n\nclass Chat(TypedDict):\n    id: str\n    created_at: str\n    text: str\n    user_id: str\n    user: User\n    recipient_id: str\n    recipient: str\n    group_id: str\n    file_id: str\n    is_read: bool\n    reads: List"
+        "surroundingCode": "from __future__ import annotations\nfrom typing import List, TYPE_CHECKING, Optional\nfrom mi.exception import NotExistRequiredData\n\nfrom mi.types.emoji import Emoji as EmojiPayload\n\nif TYPE_CHECKING:\n    from mi import ConnectionState\n\n__all__ = ('Emoji',)\n\n\nclass Emoji:\n    def __init__(self, data: EmojiPayload, state: ConnectionState):\n        self.id: Optional[str] = data.get('id')\n        self.aliases: Optional[List[str]] = data.get('aliases')\n        self.name: Optional[str] = data.get('name')\n        self.category: Optional[str] = data.get('category')\n        self.host: Optional[str] = data.get('host')\n        self.url: Optional[str] = data.get('url')\n        self._state: ConnectionState = state\n\n    async def remove(self) -> bool:\n        if not self.id:\n            raise NotExistRequiredData('id????????')\n        return await self._state.remove_emoji(self.id)"
       }
     }
   ],
@@ -122,7 +109,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-8253008773988716331"
+  "hash": "-7884904774456426806"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -136,16 +123,22 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/router.py",
+      "path": "examples/use_instance.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 2155
+      "length": 888,
+      "code": {
+        "startLine": 1,
+        "length": 888,
+        "offset": 0,
+        "surroundingCode": "import asyncio\nfrom mi import Client, Drive, Note, Router\nfrom mi.ext import tasks\n\nuri = \"wss://example.com/streaming\"\ntoken = \"This is your token\"\nbot = Client()\n\n\n@tasks.loop(60)\nasync def task():\n    print(\"?????????\")\n\n\n@bot.listen()\nasync def on_message(note: Note):\n    print(\n        f\"{note.author.instance.name} | {note.author.username}??????????: {note.content}\"\n    )\n\n\n@bot.listen()\nasync def on_reaction(ctx: Note):\n    print(\n        f\"{ctx.author.instance.name} | {ctx.author.name}???????????????: {ctx.reactions}\"\n    )\n\n\n@bot.event()\nasync def on_ready(ws):\n    print(\"work on my machine\")\n    await Router(ws).connect_channel([\"global\", \"main\"])  # global?main????????\n    task.start()  # ??????\n    res = await bot.post_note(\"Hello World\")  # ??????\n    print(res.content)\n    task.stop()  # ???????\n\n\nif __name__ == \"__main__\":\n    asyncio.run(bot.start(uri, token))"
+      }
     }
   ],
   "attributes": {
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "2637673642364005947"
+  "hash": "4395427497265619542"
 }]}

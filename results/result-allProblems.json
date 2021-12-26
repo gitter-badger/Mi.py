@@ -290,11 +290,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 44,
+      "line": 45,
       "offset": 88,
       "length": 9,
       "code": {
-        "startLine": 42,
+        "startLine": 43,
         "length": 9,
         "offset": 149,
         "surroundingCode": "\n    def _get_state(self, **options: Any) -> ConnectionState:\n        return ConnectionState(dispatch=self.dispatch, http=self.http, loop=self.loop, **options)\n\n    async def on_ready(self, ws: ClientWebSocketResponse):"
@@ -305,7 +305,7 @@
     "module": "project",
     "inspectionName": "PyArgumentListInspection"
   },
-  "hash": "4bae700cf3b1c32b86f96d9b64f2b2b827cddf9dc23f06d13912247bd9e65401"
+  "hash": "f438b93606b338a5c7996d024e147d1ec37e6bbb3477406c424e6af6a95ae7e0"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -486,11 +486,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 378,
+      "line": 379,
       "offset": 32,
       "length": 22,
       "code": {
-        "startLine": 376,
+        "startLine": 377,
         "length": 22,
         "offset": 78,
         "surroundingCode": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -501,7 +501,7 @@
     "module": "project",
     "inspectionName": "PyUnusedLocalInspection"
   },
-  "hash": "279515fce32ddd12f5584e3b37c899b7b5a41b5640e7bf49ab7c520527b44456"
+  "hash": "0fadd4085d9e58ff412f235d46016b9e15064d9f0f65e7e0f4e772fcd16ee041"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -1093,34 +1093,6 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An instance attribute is defined outside `__init__`",
-  "severity": "Moderate",
-  "comment": "Instance attribute url defined outside __init__",
-  "detailsInfo": "Reports a problem when instance attribute definition is outside `__init__` method.\n\n**Example:**\n\n```\n    class Book:\n    def __init__(self):\n        self.author = 'Mark Twain'\n\n    def release(self):\n        self.year = '1889'\n```\n\n\nWhen the quick-fix is applied, the code sample changes to:\n\n```\n    class Book:\n    def __init__(self):\n        self.year = '1889'\n        self.author = 'Mark Twain'\n\n    def release(self):\n        pass\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/client.py",
-      "language": "Python",
-      "line": 414,
-      "offset": 9,
-      "length": 8,
-      "code": {
-        "startLine": 412,
-        "length": 8,
-        "offset": 113,
-        "surroundingCode": "            origin_uri = url\n        self.origin_uri = origin_uri[:-1] if url[-1] == \"/\" else origin_uri\n        self.url = url\n        auth_i: Dict[str, Any] = {\n            \"token\": self.token,"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyAttributeOutsideInitInspection"
-  },
-  "hash": "d6713b6c0d05e141ef633a2a618f84b8af03e90d9a4837be571466efa737f1cb"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
   "type": "Accessing a protected member of a class or a module",
   "severity": "Moderate",
   "comment": "Access to a protected member _inject of a class",
@@ -1382,11 +1354,11 @@
       "type": "file",
       "path": "mi/user.py",
       "language": "Python",
-      "line": 251,
+      "line": 261,
       "offset": 36,
       "length": 4,
       "code": {
-        "startLine": 249,
+        "startLine": 259,
         "length": 4,
         "offset": 161,
         "surroundingCode": "        self.blocked: bool = bool(data.get(\"is_blocked\", False))\n        self.muted: bool = bool(data.get(\"is_muted\", False))\n        self.details = UserDetails(data)\n        self._state = state\n"
@@ -1397,7 +1369,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "30f5221d674281db6f6f4641f29068f671c0dc2ef8b805aec6b24821787b7a71"
+  "hash": "86f62739a5cf47aa216713aac155daa767bf7ea242df820c67afc92ce22b841f"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -1410,11 +1382,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 39,
+      "line": 40,
       "offset": 24,
       "length": 4,
       "code": {
-        "startLine": 37,
+        "startLine": 38,
         "length": 4,
         "offset": 158,
         "surroundingCode": "        self.http: HTTPClient = HTTPClient(connector=connector)\n        self._connection: ConnectionState = self._get_state(**options)\n        self.i: User = None\n        self.logger = get_module_logger(__name__)\n        self.ws: MisskeyWebSocket = None"
@@ -1425,7 +1397,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "64d0fd5222b4f2d2e9d467e2a0aa809dbadf0d3242794e349919c6a15b9cb7e8"
+  "hash": "3c78d6027f71b9e089e30b2cf4899dbca45ac92bac85cb1035d38ad7f164607d"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -1438,11 +1410,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 41,
+      "line": 42,
       "offset": 37,
       "length": 4,
       "code": {
-        "startLine": 39,
+        "startLine": 40,
         "length": 4,
         "offset": 114,
         "surroundingCode": "        self.i: User = None\n        self.logger = get_module_logger(__name__)\n        self.ws: MisskeyWebSocket = None\n\n    def _get_state(self, **options: Any) -> ConnectionState:"
@@ -1453,5 +1425,5 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "bb4ac983729ff1fe054879d4702fe1cd2dd46e5eac52fc4c7ee8404b0407e7cc"
+  "hash": "a06547a3085ee02dcc1042a25742d8e64f30b114c952529fca4b6db823f7f041"
 }]}
