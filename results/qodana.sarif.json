@@ -1527,13 +1527,13 @@
                 ]
               },
               {
-                "id": "PyDefaultArgumentInspection",
+                "id": "PyMissingConstructorInspection",
                 "shortDescription": {
-                  "text": "The default argument is mutable"
+                  "text": "Missed call to '__init__' of the super class"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
-                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
+                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
+                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1561,13 +1561,13 @@
                 ]
               },
               {
-                "id": "PyMissingConstructorInspection",
+                "id": "PyDefaultArgumentInspection",
                 "shortDescription": {
-                  "text": "Missed call to '__init__' of the super class"
+                  "text": "The default argument is mutable"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
-                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
+                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
+                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1935,13 +1935,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1969,13 +1969,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -3601,40 +3601,6 @@
                 ]
               },
               {
-                "id": "PyStubPackagesCompatibilityInspection",
-                "shortDescription": {
-                  "text": "Incompatible stub packages"
-                },
-                "fullDescription": {
-                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
-                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyProtectedMemberInspection",
                 "shortDescription": {
                   "text": "Accessing a protected member of a class or a module"
@@ -3692,6 +3658,40 @@
                     "target": {
                       "id": "Django",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyStubPackagesCompatibilityInspection",
+                "shortDescription": {
+                  "text": "Incompatible stub packages"
+                },
+                "fullDescription": {
+                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
+                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4463,40 +4463,6 @@
                 ]
               },
               {
-                "id": "XmlDuplicatedId",
-                "shortDescription": {
-                  "text": "Duplicate 'id' attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a duplicate 'id' attribute in XML.",
-                  "markdown": "Reports a duplicate `id` attribute in XML."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 3,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JsonSchemaDeprecation",
                 "shortDescription": {
                   "text": "Deprecated JSON property"
@@ -4520,6 +4486,40 @@
                     "target": {
                       "id": "JSON and JSON5",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDuplicatedId",
+                "shortDescription": {
+                  "text": "Duplicate 'id' attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a duplicate 'id' attribute in XML.",
+                  "markdown": "Reports a duplicate `id` attribute in XML."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 3,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4701,40 +4701,6 @@
                 ]
               },
               {
-                "id": "DuplicatedCode",
-                "shortDescription": {
-                  "text": "Duplicated code fragment"
-                },
-                "fullDescription": {
-                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
-                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "General",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RequiredAttributes",
                 "shortDescription": {
                   "text": "Missing required attribute"
@@ -4758,6 +4724,40 @@
                     "target": {
                       "id": "HTML",
                       "index": 8,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DuplicatedCode",
+                "shortDescription": {
+                  "text": "Duplicated code fragment"
+                },
+                "fullDescription": {
+                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
+                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "General",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5687,40 +5687,6 @@
                 ]
               },
               {
-                "id": "RegExpOctalEscape",
-                "shortDescription": {
-                  "text": "Octal escape"
-                },
-                "fullDescription": {
-                  "text": "Reports octal escapes, which are easily confused with back references. Use hexadecimal escapes to avoid confusion. Example: '\\07' After the quick-fix is applied: '\\x07' New in 2017.1",
-                  "markdown": "Reports octal escapes, which are easily confused with back references. Use hexadecimal escapes to avoid confusion.\n\n**Example:**\n\n\n      \\07\n\nAfter the quick-fix is applied:\n\n\n      \\x07\n\nNew in 2017.1"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "HtmlExtraClosingTag",
                 "shortDescription": {
                   "text": "Redundant closing tag"
@@ -5744,6 +5710,40 @@
                     "target": {
                       "id": "HTML",
                       "index": 8,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpOctalEscape",
+                "shortDescription": {
+                  "text": "Octal escape"
+                },
+                "fullDescription": {
+                  "text": "Reports octal escapes, which are easily confused with back references. Use hexadecimal escapes to avoid confusion. Example: '\\07' After the quick-fix is applied: '\\x07' New in 2017.1",
+                  "markdown": "Reports octal escapes, which are easily confused with back references. Use hexadecimal escapes to avoid confusion.\n\n**Example:**\n\n\n      \\07\n\nAfter the quick-fix is applied:\n\n\n      \\x07\n\nNew in 2017.1"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 5,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6197,13 +6197,13 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -6231,13 +6231,13 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "RegExpRepeatedSpace",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Consecutive spaces"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -6726,6 +6726,23 @@
         }
       ],
       "language": "en-US",
+      "versionControlProvenance": [
+        {
+          "repositoryUri": "https://github.com/yupix/Mi.py",
+          "revisionId": "6a04458d30e77666d2f2f1d1afbbc150a892c6b9",
+          "branch": "master",
+          "properties": {
+            "lastAuthorName": "yupix",
+            "vcsType": "Git",
+            "lastAuthorEmail": "yupi0982@outlook.jp",
+            "tags": [
+              "lastAuthorEmail",
+              "lastAuthorName",
+              "vcsType"
+            ]
+          }
+        }
+      ],
       "results": [
         {
           "ruleId": "PyAbstractClassInspection",
@@ -6743,9 +6760,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 13,
+                  "startLine": 12,
                   "startColumn": 7,
-                  "charOffset": 291,
+                  "charOffset": 290,
                   "charLength": 15,
                   "snippet": {
                     "text": "AbstractBotBase"
@@ -6753,9 +6770,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 11,
+                  "startLine": 10,
                   "startColumn": 1,
-                  "charOffset": 283,
+                  "charOffset": 282,
                   "charLength": 151,
                   "snippet": {
                     "text": "\n\nclass AbstractBotBase(AbstractGroupMixin):\n    @abstractmethod\n    async def can_run(self, ctx: AbstractContext, *, call_once: bool = False) -> bool:"
@@ -6771,7 +6788,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "2d75350d1843bda4876d594cfc59fb27c4ce3a4422724c6a85526eef71eb4c8e"
+            "equalIndicator/v1": "dd5f8d1042e0cdba9a557b0b2fdece818ac961a6277cc839b65ccf5afc8ed4c3"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -6796,9 +6813,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 110,
+                  "startLine": 109,
                   "startColumn": 27,
-                  "charOffset": 3956,
+                  "charOffset": 3898,
                   "charLength": 6,
                   "snippet": {
                     "text": "checks"
@@ -6806,9 +6823,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 108,
+                  "startLine": 107,
                   "startColumn": 1,
-                  "charOffset": 3867,
+                  "charOffset": 3809,
                   "charLength": 157,
                   "snippet": {
                     "text": "            checks = kwargs.get('checks', [])\n        finally:\n            self.checks = checks\n        self.cog = None\n        parent = kwargs.get('parent')"
@@ -6824,7 +6841,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "700ed11e6b7503b94dac0473dc24a4a94ab7415a90622df66c77c125683ff296"
+            "equalIndicator/v1": "fc8adb3dd15e1427511373cbe5023d45aa5e3418298f3fc2e078d0135b968317"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -6864,7 +6881,7 @@
                   "charOffset": 194,
                   "charLength": 107,
                   "snippet": {
-                    "text": "__version__ = \"1.0.2\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
+                    "text": "__version__ = \"1.0.3\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
                   }
                 }
               },
@@ -6877,7 +6894,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "368933ae998ff9fe0a40ff90b4c8e550cae7e82a07f3105ba5baa1b11d6d2bc0"
+            "equalIndicator/v1": "4cf7ae0dccb3c81843753033a4d00c7785eb32d9398aad7f158dfe590d49083e"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -6904,7 +6921,7 @@
                 "region": {
                   "startLine": 8,
                   "startColumn": 9,
-                  "charOffset": 157,
+                  "charOffset": 140,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -6914,7 +6931,7 @@
                 "contextRegion": {
                   "startLine": 6,
                   "startColumn": 1,
-                  "charOffset": 115,
+                  "charOffset": 98,
                   "charLength": 70,
                   "snippet": {
                     "text": "    @property\n    @abstractmethod\n    def command(self):\n        pass\n"
@@ -6930,7 +6947,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "6074b423ef2dfdb9eb0bf9b3f7e0ae0184a047737f4ce554fcaf5c58b57c8cc8"
+            "equalIndicator/v1": "e308ade67308be3a90789b056b83c21ad85985d244baa4f1123dd56fdc7a73ed"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -6957,7 +6974,7 @@
                 "region": {
                   "startLine": 22,
                   "startColumn": 9,
-                  "charOffset": 419,
+                  "charOffset": 402,
                   "charLength": 16,
                   "snippet": {
                     "text": "full_parent_name"
@@ -6967,7 +6984,7 @@
                 "contextRegion": {
                   "startLine": 20,
                   "startColumn": 1,
-                  "charOffset": 377,
+                  "charOffset": 360,
                   "charLength": 86,
                   "snippet": {
                     "text": "    @property\n    @abstractmethod\n    def full_parent_name(self) -> str:\n        pass\n"
@@ -6983,7 +7000,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "705effab0aeadd43418cb698d250e5e6d04732bcb73877d09d2c2474d882a265"
+            "equalIndicator/v1": "3b94a8eb511ffab6af1bec4b4b2c5914b94956cb0bd24e4f0a127c8f057c3d73"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -7010,7 +7027,7 @@
                 "region": {
                   "startLine": 27,
                   "startColumn": 9,
-                  "charOffset": 506,
+                  "charOffset": 489,
                   "charLength": 14,
                   "snippet": {
                     "text": "qualified_name"
@@ -7020,7 +7037,7 @@
                 "contextRegion": {
                   "startLine": 25,
                   "startColumn": 1,
-                  "charOffset": 464,
+                  "charOffset": 447,
                   "charLength": 84,
                   "snippet": {
                     "text": "    @property\n    @abstractmethod\n    def qualified_name(self) -> str:\n        pass\n"
@@ -7036,7 +7053,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "6c02442ca3c628dc985c982318f6a82f89bde5610c771c796758757bcaac80de"
+            "equalIndicator/v1": "1543b1cd1176e93c386037ec73d8b39797da405d7411cdb535fbdbfa1a55e2a0"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -7061,9 +7078,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 64,
+                  "startLine": 63,
                   "startColumn": 22,
-                  "charOffset": 2443,
+                  "charOffset": 2385,
                   "charLength": 50,
                   "snippet": {
                     "text": "command(name=name, cls=cls, *args, **kwargs)(func)"
@@ -7071,9 +7088,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 62,
+                  "startLine": 61,
                   "startColumn": 1,
-                  "charOffset": 2314,
+                  "charOffset": 2256,
                   "charLength": 206,
                   "snippet": {
                     "text": "        def decorator(func: Callable[..., Any]):  # TODO:ここやる\n            kwargs.setdefault('parent', self)\n            result = command(name=name, cls=cls, *args, **kwargs)(func)\n            return result\n"
@@ -7089,7 +7106,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "55df491bb7c00e35aa8c3ace7a9a9353262ccc20ca723cb4ece3a776b10b34da"
+            "equalIndicator/v1": "69c46bf50a6edd973bcbf58d5ff7140b34298c7783a74089cca1976d4cfe1ca7"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -7114,9 +7131,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 131,
+                  "startLine": 130,
                   "startColumn": 15,
-                  "charOffset": 4576,
+                  "charOffset": 4518,
                   "charLength": 16,
                   "snippet": {
                     "text": "call_after_hooks"
@@ -7124,9 +7141,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 129,
+                  "startLine": 128,
                   "startColumn": 1,
-                  "charOffset": 4536,
+                  "charOffset": 4478,
                   "charLength": 134,
                   "snippet": {
                     "text": "        return self.name\n\n    async def call_after_hooks(self, ctx):\n        hook = ctx.bot._after_invoke\n        if hook is not None:"
@@ -7142,7 +7159,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "aa3e5abee9d369f09026f654616ecebccf331be5be4eedbef2a3b42e052aaf52"
+            "equalIndicator/v1": "59eceba8aba04efd73e8eb40403e54128e6e332f3d25a993526a4cafda0fdeab"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7220,9 +7237,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 64,
+                  "startLine": 63,
                   "startColumn": 50,
-                  "charOffset": 2471,
+                  "charOffset": 2413,
                   "charLength": 5,
                   "snippet": {
                     "text": "*args"
@@ -7230,9 +7247,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 62,
+                  "startLine": 61,
                   "startColumn": 1,
-                  "charOffset": 2314,
+                  "charOffset": 2256,
                   "charLength": 206,
                   "snippet": {
                     "text": "        def decorator(func: Callable[..., Any]):  # TODO:ここやる\n            kwargs.setdefault('parent', self)\n            result = command(name=name, cls=cls, *args, **kwargs)(func)\n            return result\n"
@@ -7248,7 +7265,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "b9e6a3a9675b6f03d38cf1798eb54561db2ec3a19e55d6fc75a2fb0572c02d86"
+            "equalIndicator/v1": "4557540c3975d2bc344eb0b65e26d4a268105aaa3718f74fc343b37998f7302d"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -7273,9 +7290,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 45,
+                  "startLine": 44,
                   "startColumn": 88,
-                  "charOffset": 1580,
+                  "charOffset": 1532,
                   "charLength": 9,
                   "snippet": {
                     "text": "**options"
@@ -7283,9 +7300,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 43,
+                  "startLine": 42,
                   "startColumn": 1,
-                  "charOffset": 1431,
+                  "charOffset": 1383,
                   "charLength": 219,
                   "snippet": {
                     "text": "\n    def _get_state(self, **options: Any) -> ConnectionState:\n        return ConnectionState(dispatch=self.dispatch, http=self.http, loop=self.loop, **options)\n\n    async def on_ready(self, ws: ClientWebSocketResponse):"
@@ -7301,7 +7318,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "f438b93606b338a5c7996d024e147d1ec37e6bbb3477406c424e6af6a95ae7e0"
+            "equalIndicator/v1": "b60663d9373c5bab0907a65700e0e86e168cc70959c71c7ba51f1bcc97984501"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -7328,7 +7345,7 @@
                 "region": {
                   "startLine": 109,
                   "startColumn": 9,
-                  "charOffset": 4293,
+                  "charOffset": 4286,
                   "charLength": 3,
                   "snippet": {
                     "text": "cls"
@@ -7338,7 +7355,7 @@
                 "contextRegion": {
                   "startLine": 107,
                   "startColumn": 1,
-                  "charOffset": 4239,
+                  "charOffset": 4232,
                   "charLength": 177,
                   "snippet": {
                     "text": "\n    def _inject(self, bot: AbstractBotBase):\n        cls = self.__class__\n        for index, command in enumerate(self.__cog_commands__):\n            if command.parent is None:"
@@ -7354,7 +7371,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "13aabbeda2ff2fa1be5ab0340ca272ea491711781919c308b0679bb339d79f45"
+            "equalIndicator/v1": "86992b421f9f9024111b9f52c1452d54698cd99ad88cfa32a72ff6cb81df4cc5"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7379,9 +7396,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 32,
+                  "startLine": 31,
                   "startColumn": 48,
-                  "charOffset": 560,
+                  "charOffset": 559,
                   "charLength": 17,
                   "snippet": {
                     "text": "**parameters: Any"
@@ -7389,9 +7406,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 30,
+                  "startLine": 29,
                   "startColumn": 1,
-                  "charOffset": 499,
+                  "charOffset": 498,
                   "charLength": 144,
                   "snippet": {
                     "text": "\nclass Route:\n    def __init__(self, method: str, path: str, **parameters: Any):\n        self.path: str = path\n        self.method: str = method"
@@ -7407,7 +7424,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "8eb881c2132dc99d00f8624bbf1148926eec9273da1e50ebd9a56a235fae180e"
+            "equalIndicator/v1": "b0a78f1747403551dde954cffbd32c8c0c58798062ffeb8c02127dcdbbd57512"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7432,9 +7449,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 55,
+                  "startLine": 54,
                   "startColumn": 46,
-                  "charOffset": 1427,
+                  "charOffset": 1426,
                   "charLength": 10,
                   "snippet": {
                     "text": "files=None"
@@ -7442,9 +7459,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 53,
+                  "startLine": 52,
                   "startColumn": 1,
-                  "charOffset": 1340,
+                  "charOffset": 1339,
                   "charLength": 206,
                   "snippet": {
                     "text": "        self.token: Optional[str] = None\n\n    async def request(self, route: Route, *, files=None, form=None, **kwargs) -> Any:\n        headers: Dict[str, str] = {\n            'User-Agent': self.user_agent,"
@@ -7460,7 +7477,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "2e4ac46d673b657ab949eb8ea2d9f4775692df25467b4bc967becf60f9605946"
+            "equalIndicator/v1": "c84087b819fa792464455aebc22e4a5ccd571f9d45e474448917f20c0220eec2"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7485,9 +7502,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 55,
+                  "startLine": 54,
                   "startColumn": 58,
-                  "charOffset": 1439,
+                  "charOffset": 1438,
                   "charLength": 9,
                   "snippet": {
                     "text": "form=None"
@@ -7495,9 +7512,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 53,
+                  "startLine": 52,
                   "startColumn": 1,
-                  "charOffset": 1340,
+                  "charOffset": 1339,
                   "charLength": 206,
                   "snippet": {
                     "text": "        self.token: Optional[str] = None\n\n    async def request(self, route: Route, *, files=None, form=None, **kwargs) -> Any:\n        headers: Dict[str, str] = {\n            'User-Agent': self.user_agent,"
@@ -7513,113 +7530,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "f9eabdaf7c49be4d3cd01d8b988427b61d8ab0ab1e716441dff16807c38868cb"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnusedLocalInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Parameter 'args' value is not used",
-            "markdown": "Parameter 'args' value is not used"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/utils.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 135,
-                  "startColumn": 9,
-                  "charOffset": 3247,
-                  "charLength": 5,
-                  "snippet": {
-                    "text": "*args"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 133,
-                  "startColumn": 1,
-                  "charOffset": 3221,
-                  "charLength": 85,
-                  "snippet": {
-                    "text": "\n@deprecated_func\ndef api(*args, **kwargs) -> None:\n    \"\"\"\n    .. deprecated:: 1.0.1"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "5c060f9a89884e57958ed3f1396efb7a0e08d219e0a6898f2d210ac3955dd80f"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnusedLocalInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Parameter 'kwargs' value is not used",
-            "markdown": "Parameter 'kwargs' value is not used"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/utils.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 135,
-                  "startColumn": 16,
-                  "charOffset": 3254,
-                  "charLength": 8,
-                  "snippet": {
-                    "text": "**kwargs"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 133,
-                  "startColumn": 1,
-                  "charOffset": 3221,
-                  "charLength": 85,
-                  "snippet": {
-                    "text": "\n@deprecated_func\ndef api(*args, **kwargs) -> None:\n    \"\"\"\n    .. deprecated:: 1.0.1"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "55cd574bb6c82f795a412ea6768c18c2adcf6955ea0abf1e516ed4c5fbdc9efa"
+            "equalIndicator/v1": "800c3e1b187ec0c66caa86291e13dbed7800ae088fb288fde675bc2d9659c525"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7644,9 +7555,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 379,
+                  "startLine": 382,
                   "startColumn": 32,
-                  "charOffset": 12600,
+                  "charOffset": 12756,
                   "charLength": 22,
                   "snippet": {
                     "text": "reconnect: bool = True"
@@ -7654,9 +7565,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 377,
+                  "startLine": 380,
                   "startColumn": 1,
-                  "charOffset": 12522,
+                  "charOffset": 12678,
                   "charLength": 197,
                   "snippet": {
                     "text": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -7672,7 +7583,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "0fadd4085d9e58ff412f235d46016b9e15064d9f0f65e7e0f4e772fcd16ee041"
+            "equalIndicator/v1": "3cf0e1f432e48d98283055fd5a67e4e05c1532394018152f683ece1e4bbbd606"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8015,9 +7926,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 25,
+                  "startLine": 24,
                   "startColumn": 13,
-                  "charOffset": 927,
+                  "charOffset": 869,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -8025,9 +7936,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 23,
+                  "startLine": 22,
                   "startColumn": 1,
-                  "charOffset": 867,
+                  "charOffset": 809,
                   "charLength": 211,
                   "snippet": {
                     "text": "\n    def recursively_remove_all_commands(self):\n        for command in self.all_commands.copy().values():\n            if isinstance(command, GroupMixin):\n                command.recursively_remove_all_commands()"
@@ -8043,7 +7954,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "06e0c86f194a4ea91936709ec6b759e3831044936ba32a0695acd5cc4bfadde7"
+            "equalIndicator/v1": "e9ed579d85a03b60fd520899b0a06e782f148c5ad74082c186f43f66d6edc07f"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8068,9 +7979,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 30,
+                  "startLine": 29,
                   "startColumn": 27,
-                  "charOffset": 1152,
+                  "charOffset": 1094,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -8078,9 +7989,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 28,
+                  "startLine": 27,
                   "startColumn": 1,
-                  "charOffset": 1079,
+                  "charOffset": 1021,
                   "charLength": 223,
                   "snippet": {
                     "text": "            self.remove_command(command.name)\n\n    def add_command(self, command: AbstractCommand):\n        if not isinstance(command, Command):\n            raise TypeError(f'{command} passed must be a subclass of Command')"
@@ -8096,7 +8007,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "5348ea9a723e2053303cd5ca52a019701e2ed9a70da6514c7f82287c99864651"
+            "equalIndicator/v1": "36fb36e47720464e1d595854f8847dd9909df47618582a5a39e457694e56d00a"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8121,9 +8032,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 48,
+                  "startLine": 47,
                   "startColumn": 9,
-                  "charOffset": 1834,
+                  "charOffset": 1776,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -8131,9 +8042,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 46,
+                  "startLine": 45,
                   "startColumn": 1,
-                  "charOffset": 1784,
+                  "charOffset": 1726,
                   "charLength": 145,
                   "snippet": {
                     "text": "\n    def remove_command(self, name: str):\n        command = self.all_commands.pop(name, None)\n        if command is None:\n            return None"
@@ -8149,7 +8060,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "c586fd04ba76c49c8c33445f8e22874dcaf26aa523b0d0f0a19b81db7a2607d6"
+            "equalIndicator/v1": "80dad84a6e132510e6e9ea9162a1fc01a77a3fdb237b5cb92912ee2b63661608"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8174,9 +8085,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 70,
+                  "startLine": 69,
                   "startColumn": 29,
-                  "charOffset": 2576,
+                  "charOffset": 2518,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -8184,9 +8095,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 68,
+                  "startLine": 67,
                   "startColumn": 1,
-                  "charOffset": 2546,
+                  "charOffset": 2488,
                   "charLength": 156,
                   "snippet": {
                     "text": "\n\ndef hooked_wrapped_callback(command: 'Command', ctx, coro):\n    @functools.wraps(coro)\n    async def wrapped(*args: Tuple[Any], **kwargs: Dict[Any, Any]):"
@@ -8202,7 +8113,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "14a2d4e0b2b14e06202c78eabc8ed1cfd9b2fac61aee2a880df583468ffb685e"
+            "equalIndicator/v1": "113428710fc257f0df357908efa98d294cb9ffaea6a8fdd86892a95922046c64"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8227,9 +8138,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 118,
+                  "startLine": 117,
                   "startColumn": 9,
-                  "charOffset": 4204,
+                  "charOffset": 4146,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -8237,9 +8148,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 116,
+                  "startLine": 115,
                   "startColumn": 1,
-                  "charOffset": 4136,
+                  "charOffset": 4078,
                   "charLength": 161,
                   "snippet": {
                     "text": "    def full_parent_name(self) -> str:\n        entries = []\n        command = self\n        while command.parent is not None:\n            command = command.parent"
@@ -8255,7 +8166,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "a8e200358f7f59af13c7bc3c4002656082226a60377fd30cf44c054748e41a79"
+            "equalIndicator/v1": "87b50aec14eff68d6d07e764a818cc0d0269b0b0b1afbbdff893d33e35ed0156"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8280,9 +8191,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 120,
+                  "startLine": 119,
                   "startColumn": 13,
-                  "charOffset": 4273,
+                  "charOffset": 4215,
                   "charLength": 7,
                   "snippet": {
                     "text": "command"
@@ -8290,9 +8201,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 118,
+                  "startLine": 117,
                   "startColumn": 1,
-                  "charOffset": 4196,
+                  "charOffset": 4138,
                   "charLength": 185,
                   "snippet": {
                     "text": "        command = self\n        while command.parent is not None:\n            command = command.parent\n            entries.append(command.name)\n        return ' '.join(reversed(entries))"
@@ -8308,7 +8219,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "cd67717360425ff0d9f78c1e1c019444128567876721f1b9778e6bc40279fe99"
+            "equalIndicator/v1": "f44a9fae6c0a6ff9be0aef60c2655742243775957f38af1e90113a562733a0eb"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8386,9 +8297,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 8,
+                  "startLine": 9,
                   "startColumn": 7,
-                  "charOffset": 153,
+                  "charOffset": 154,
                   "charLength": 8,
                   "snippet": {
                     "text": "Features"
@@ -8396,9 +8307,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 6,
+                  "startLine": 7,
                   "startColumn": 1,
-                  "charOffset": 145,
+                  "charOffset": 146,
                   "charLength": 66,
                   "snippet": {
                     "text": "\n\nclass Features:\n    registration: bool\n    local_time_line: bool"
@@ -8414,7 +8325,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "6c6acb6fa8fe5cb0ca6077c2088f79ae73a37c9313b7ecd842a659e6cea6da2d"
+            "equalIndicator/v1": "8b55c9d41d5959d58cced62f653206b4ca23179d05d4a47e3fec158743619d81"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8439,9 +8350,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 17,
+                  "startLine": 16,
                   "startColumn": 7,
-                  "charOffset": 302,
+                  "charOffset": 301,
                   "charLength": 16,
                   "snippet": {
                     "text": "_MissingSentinel"
@@ -8449,9 +8360,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 15,
+                  "startLine": 14,
                   "startColumn": 1,
-                  "charOffset": 294,
+                  "charOffset": 293,
                   "charLength": 75,
                   "snippet": {
                     "text": "\n\nclass _MissingSentinel:\n    def __eq__(self, other):\n        return False"
@@ -8467,7 +8378,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "60c0e4c58eb42646a277e30c7ba5b474747474509c3095062e37e415efbce5fa"
+            "equalIndicator/v1": "eac5e23a7ea28dc0784d683e91070d247a1b2b7c33953b3a20ff020528218e28"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8810,9 +8721,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 190,
+                  "startLine": 191,
                   "startColumn": 15,
-                  "charOffset": 6340,
+                  "charOffset": 6341,
                   "charLength": 11,
                   "snippet": {
                     "text": "cog._inject"
@@ -8820,9 +8731,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 188,
+                  "startLine": 189,
                   "startColumn": 1,
-                  "charOffset": 6275,
+                  "charOffset": 6276,
                   "charLength": 119,
                   "snippet": {
                     "text": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
@@ -8838,7 +8749,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "a9684903fd9dbc7051adbf50596aa5418d9568831505e0a3c36add88d518bdc2"
+            "equalIndicator/v1": "c204bc6b230440d861709c16101eaeacec13bb24e2f5c9edc37803c08ca82df7"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8863,9 +8774,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 199,
+                  "startLine": 200,
                   "startColumn": 9,
-                  "charOffset": 6573,
+                  "charOffset": 6574,
                   "charLength": 10,
                   "snippet": {
                     "text": "cog._eject"
@@ -8873,9 +8784,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 197,
+                  "startLine": 198,
                   "startColumn": 1,
-                  "charOffset": 6545,
+                  "charOffset": 6546,
                   "charLength": 64,
                   "snippet": {
                     "text": "            return\n\n        cog._eject(self)\n\n        return cog"
@@ -8891,7 +8802,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "2ec22f7b5a7dbf978f2d30d5110e6ae6f48cfc2396116fcadb295ccb4db17585"
+            "equalIndicator/v1": "62e6f0e1bb3a0cb2d3e9a7ead6ed166f1212f5131948cbcad1304a956c73f9ca"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8918,7 +8829,7 @@
                 "region": {
                   "startLine": 73,
                   "startColumn": 39,
-                  "charOffset": 2916,
+                  "charOffset": 2909,
                   "charLength": 14,
                   "snippet": {
                     "text": "c._update_copy"
@@ -8928,7 +8839,7 @@
                 "contextRegion": {
                   "startLine": 71,
                   "startColumn": 1,
-                  "charOffset": 2801,
+                  "charOffset": 2794,
                   "charLength": 248,
                   "snippet": {
                     "text": "        self = super().__new__(cls)\n        cmd_attrs = cls.__cog_settings__\n        self.__cog_commands__ = tuple(c._update_copy(cmd_attrs) for c in cls.__cog_commands__)\n\n        lookup = {cmd.qualified_name: cmd for cmd in self.__cog_commands__}"
@@ -8944,7 +8855,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "2e0c02feb301e695e10509320fba4167ef0849d523f72af6a5e6ab8ce75c1594"
+            "equalIndicator/v1": "ac34a4acaaf552a7b35ac92ebb39c9c3d86713468227fdf3ea3b2caa3c96486f"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8969,9 +8880,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 132,
+                  "startLine": 131,
                   "startColumn": 16,
-                  "charOffset": 4620,
+                  "charOffset": 4562,
                   "charLength": 21,
                   "snippet": {
                     "text": "ctx.bot._after_invoke"
@@ -8979,9 +8890,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 130,
+                  "startLine": 129,
                   "startColumn": 1,
-                  "charOffset": 4561,
+                  "charOffset": 4503,
                   "charLength": 137,
                   "snippet": {
                     "text": "\n    async def call_after_hooks(self, ctx):\n        hook = ctx.bot._after_invoke\n        if hook is not None:\n            await hook(ctx)"
@@ -8997,7 +8908,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "03e5d989e0dd57bdce9be8028180e92cfcbfb1a67a78d73f075166bd7ef2a01a"
+            "equalIndicator/v1": "a79353604b9da8d1a7b1fdd5e1de8e2b448fb3e5a9096198a314684abc720607"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -9022,9 +8933,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 17,
+                  "startLine": 18,
                   "startColumn": 21,
-                  "charOffset": 536,
+                  "charOffset": 563,
                   "charLength": 8,
                   "snippet": {
                     "text": "Follower"
@@ -9032,12 +8943,12 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 15,
+                  "startLine": 16,
                   "startColumn": 1,
-                  "charOffset": 433,
-                  "charLength": 266,
+                  "charOffset": 460,
+                  "charLength": 258,
                   "snippet": {
-                    "text": "from mi.iterators import InstanceIterator\nfrom mi.note import Note, Poll, Reaction\nfrom mi.user import Follower, Following\nfrom mi.emoji import Emoji\nfrom mi.utils import check_multi_arg, get_cache_key, get_module_logger, key_builder, remove_dict_empty, str_lower, \\"
+                    "text": "from mi.iterators import InstanceIterator\nfrom mi.note import Note, Poll, Reaction\nfrom mi.user import Follower, Following\nfrom mi.utils import check_multi_arg, get_cache_key, get_module_logger, key_builder, remove_dict_empty, str_lower, \\\n    upper_to_lower"
                   }
                 }
               },
@@ -9050,7 +8961,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "38573b1da7791a5053d99871ea63005f23154294e6c2d52f837738c4a05ce593"
+            "equalIndicator/v1": "a0aa05d5c64fcee3ceece9c28947bc4f3a37276935aeb4dd89ede8ec4cb74aa5"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -9234,9 +9145,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 47,
+                  "startLine": 48,
                   "startColumn": 24,
-                  "charOffset": 1425,
+                  "charOffset": 1426,
                   "charLength": 4,
                   "snippet": {
                     "text": "None"
@@ -9244,9 +9155,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 45,
+                  "startLine": 46,
                   "startColumn": 1,
-                  "charOffset": 1309,
+                  "charOffset": 1310,
                   "charLength": 236,
                   "snippet": {
                     "text": "        self.origin_uri: Optional[str] = None\n        self.__extensions: Dict[str, Any] = {}\n        self.i: User = None\n        self.__cogs: Dict[str, str] = {}\n        self.strip_after_prefix = options.get(\"strip_after_prefix\", False)"
@@ -9262,7 +9173,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "2c05eb18bdd66a4abf17f53c8e10882ca92f0279d32989b14567f49988b10993"
+            "equalIndicator/v1": "4055c0a1c31f5087849cad3828138fc2b2fc31826b90a4acd75177162bbcec0b"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -9287,9 +9198,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 261,
+                  "startLine": 258,
                   "startColumn": 36,
-                  "charOffset": 10092,
+                  "charOffset": 10055,
                   "charLength": 4,
                   "snippet": {
                     "text": "data"
@@ -9297,12 +9208,12 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 259,
+                  "startLine": 256,
                   "startColumn": 1,
-                  "charOffset": 9931,
-                  "charLength": 195,
+                  "charOffset": 9888,
+                  "charLength": 201,
                   "snippet": {
-                    "text": "        self.blocked: bool = bool(data.get(\"is_blocked\", False))\n        self.muted: bool = bool(data.get(\"is_muted\", False))\n        self.details = UserDetails(data)\n        self._state = state\n"
+                    "text": "        self.is_blocked: bool = bool(data.get(\"is_blocked\", False))\n        self.is_muted: bool = bool(data.get(\"is_muted\", False))\n        self.details = UserDetails(data)\n        self._state = state\n"
                   }
                 }
               },
@@ -9315,7 +9226,60 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "86f62739a5cf47aa216713aac155daa767bf7ea242df820c67afc92ce22b841f"
+            "equalIndicator/v1": "8960ac2eed15b25da7027986efe5abfa5d689d1d00967e59bfb8d1a0d5410421"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyTypeCheckerInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Expected type 'ConnectionState', got 'NoteActions' instead",
+            "markdown": "Expected type 'ConnectionState', got 'NoteActions' instead"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "mi/state.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 137,
+                  "startColumn": 42,
+                  "charOffset": 5147,
+                  "charLength": 10,
+                  "snippet": {
+                    "text": "state=self"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 135,
+                  "startColumn": 1,
+                  "charOffset": 4956,
+                  "charLength": 260,
+                  "snippet": {
+                    "text": "        field = remove_dict_empty(field)\n        res = await self.http.request(Route('POST', '/api/notes/create'), json=field, auth=True, lower=True)\n        return Note(res[\"created_note\"], state=self)\n\n    async def create_renote(self, note_id: str) -> Note:"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "7b2aea2c0df8b4132a488785c78b46d4f06fcadf4b0fa451fc88f16f1c3f1dcb"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -9340,9 +9304,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 40,
+                  "startLine": 39,
                   "startColumn": 24,
-                  "charOffset": 1335,
+                  "charOffset": 1287,
                   "charLength": 4,
                   "snippet": {
                     "text": "None"
@@ -9350,9 +9314,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 38,
+                  "startLine": 37,
                   "startColumn": 1,
-                  "charOffset": 1177,
+                  "charOffset": 1129,
                   "charLength": 253,
                   "snippet": {
                     "text": "        self.http: HTTPClient = HTTPClient(connector=connector)\n        self._connection: ConnectionState = self._get_state(**options)\n        self.i: User = None\n        self.logger = get_module_logger(__name__)\n        self.ws: MisskeyWebSocket = None"
@@ -9368,7 +9332,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "3c78d6027f71b9e089e30b2cf4899dbca45ac92bac85cb1035d38ad7f164607d"
+            "equalIndicator/v1": "dc7711f15374e08fc6490139fd9081de2dee72ff5de4dc3eaecaec5257cb6c10"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -9393,9 +9357,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 42,
+                  "startLine": 41,
                   "startColumn": 37,
-                  "charOffset": 1426,
+                  "charOffset": 1378,
                   "charLength": 4,
                   "snippet": {
                     "text": "None"
@@ -9403,9 +9367,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 40,
+                  "startLine": 39,
                   "startColumn": 1,
-                  "charOffset": 1312,
+                  "charOffset": 1264,
                   "charLength": 180,
                   "snippet": {
                     "text": "        self.i: User = None\n        self.logger = get_module_logger(__name__)\n        self.ws: MisskeyWebSocket = None\n\n    def _get_state(self, **options: Any) -> ConnectionState:"
@@ -9421,7 +9385,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "a06547a3085ee02dcc1042a25742d8e64f30b114c952529fca4b6db823f7f041"
+            "equalIndicator/v1": "e3b1a8452df9b88f26b674503a3087f2c14a72571d5f8277b469a6767162dd94"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -9432,8 +9396,8 @@
         }
       ],
       "automationDetails": {
-        "id": "project - 12/26/21, 3:16 AM",
-        "guid": "9f08fd69-0232-4f30-9040-b648f32db26a"
+        "id": "project - 12/27/21, 2:54 AM",
+        "guid": "58e92639-c363-469c-9dbc-27fe2da5b54a"
       },
       "newlineSequences": [
         "\r\n",
