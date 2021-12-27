@@ -7,8 +7,8 @@
     "vcs": {
       "sarifIdea": {
         "repositoryUri": "https://github.com/yupix/Mi.py",
-        "revisionId": "2e9ff603473f8d02301a1547d9f10c29152f0f45",
-        "branch": "master"
+        "revisionId": "3bb9fdfe18ca325e48999f7eed9008b0fcb9e8b3",
+        "branch": "release/v1.0.3"
       }
     }
   }
