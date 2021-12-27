@@ -11,16 +11,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/abc/chat.py",
+      "path": "mi/abc/ext/__init__.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 242,
+      "length": 62,
       "code": {
         "startLine": 1,
-        "length": 242,
+        "length": 62,
         "offset": 0,
-        "surroundingCode": "from abc import ABC, abstractmethod\n\n\nclass AbstractChat(ABC):\n    @abstractmethod\n    async def send(self) -> 'AbstractChatContent':\n        pass\n\n\nclass AbstractChatContent(ABC):\n    @abstractmethod\n    async def delete(self):\n        pass"
+        "surroundingCode": "from .bot import *\nfrom .context import *\nfrom .core import *"
       }
     }
   ],
@@ -28,7 +28,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-5946059918899145350"
+  "hash": "-5994544491515254192"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -42,18 +42,24 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/note.py",
+      "path": "mi/abc/note.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 12739
+      "length": 486,
+      "code": {
+        "startLine": 1,
+        "length": 486,
+        "offset": 0,
+        "surroundingCode": "from abc import ABC, abstractmethod\n\n\nclass AbstractNote(ABC):\n    @abstractmethod\n    def emoji_count(self) -> int:\n        \"\"\"\n        ???????emoji???????????????\n\n        Returns\n        -------\n        int\n            ???????????\n        \"\"\"\n\n    @abstractmethod\n    async def delete(self) -> bool:\n        \"\"\"\n        ????ID??????????\n\n        returns\n        -------\n        is_success: bool\n            ???????\n        status_code: int\n            HTTP ?????????????\n        \"\"\""
+      }
     }
   ],
   "attributes": {
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-969644722517523327"
+  "hash": "8338655035868016016"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -67,16 +73,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "examples/use_class.py",
+      "path": "mi/ext/commands/_types.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 943,
+      "length": 39,
       "code": {
         "startLine": 1,
-        "length": 943,
+        "length": 39,
         "offset": 0,
-        "surroundingCode": "import asyncio\nfrom mi import Note\nfrom mi.ext import commands, tasks\nfrom mi.note import Note\nfrom mi.router import Router\n\nuri = \"wss://example.com/streaming\"\ntoken = \"This is your token\"\nprefix = \"tu!\"\n\n\nclass MyBot(commands.Bot):\n    def __init__(self, cmd_prefix: str):\n        super().__init__(cmd_prefix)\n\n    @tasks.loop(60)\n    async def task(self):\n        print(\"?????????\")\n\n    async def on_ready(self, ws):\n        print(\"work on my machine\")\n        await Router(ws).connect_channel([\"global\", \"main\"])  # global?main????????\n        self.task.start()  # ????????\n        res = await self.post_note(\"Hello~~~~~\")  # ??????\n        print(res.content)\n        self.task.stop()  # ???????\n\n    async def on_message(self, note: Note):\n        print(\n            f\"{note.author.instance.name} | {note.author.username}??????????: {note.content}\"\n        )\n\n\nif __name__ == \"__main__\":\n    asyncio.run(MyBot(prefix).start(uri, token))"
+        "surroundingCode": "class _BaseCommand:\n    __slots__ = ()"
       }
     }
   ],
@@ -84,5 +90,80 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-6208493429286562723"
+  "hash": "-5419606406837993300"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/types/note.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 2135
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "6218157293802994585"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/types/user.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 2686
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "5583776657291293191"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/http.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 4308
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "3102975776062143942"
 }]}
