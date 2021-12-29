@@ -137,7 +137,7 @@
     "module": "project",
     "inspectionName": "PyUnusedLocalInspection"
   },
-  "hash": "f9c9bef6c081eb58fe41ca4d48da598753f450825317d1d845c730d7c7beea60"
+  "hash": "93aea2113f62cc1dc038079dba674d968368aef2416e0631d627515d06bca068"
 },{
   "tool": "Code Inspection",
   "category": "Python",
