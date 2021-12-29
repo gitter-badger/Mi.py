@@ -122,11 +122,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 387,
+      "line": 393,
       "offset": 32,
       "length": 22,
       "code": {
-        "startLine": 385,
+        "startLine": 391,
         "length": 22,
         "offset": 78,
         "surroundingCode": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -137,7 +137,7 @@
     "module": "project",
     "inspectionName": "PyUnusedLocalInspection"
   },
-  "hash": "cff9b2a4b5673d50bcc2a8b40f0506b02505f3fdc168d67429290f4c91f8e75e"
+  "hash": "cdfead8ed65c97491ec7bbe59814b86a825c0b599b1c8444e48e63bdabd57f91"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -710,11 +710,11 @@
       "type": "file",
       "path": "mi/state.py",
       "language": "Python",
-      "line": 339,
+      "line": 347,
       "offset": 9,
       "length": 23,
       "code": {
-        "startLine": 337,
+        "startLine": 345,
         "length": 23,
         "offset": 127,
         "surroundingCode": "        note = Note(message, state=self)\n        # Router(self.http.ws).capture_message(note.id) TODO: capture message\n        self.client._on_message(note)\n\n    async def follow_user(self, user_id: str) -> tuple[bool, Optional[str]]:"
@@ -725,7 +725,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "f8ed15c8ebea6916e882d4dd19ab5276ec0aadb8ba3a4af10146ddd42ae3d9d5"
+  "hash": "739ba3bd32bf78b1df1f7877e3476847b733e4dff78752c0855929cda6dbe785"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -922,6 +922,62 @@
     "inspectionName": "PyTypeCheckerInspection"
   },
   "hash": "549ac9efbe78d161885f3356b2b3aa137cf1838595e3f0f4a839f6b4b5533bc2"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Incorrect type",
+  "severity": "High",
+  "comment": "Expected type 'ConnectionState', got 'NoteActions' instead",
+  "detailsInfo": "Reports type errors in function call expressions, targets, and return values. In a dynamically typed language, this is possible in a limited number of cases.\n\nTypes of function parameters can be specified in\ndocstrings or in Python 3 function annotations.\n\n**Example:**\n\n```\ndef foo() -> int:\n    return \"abc\" # Expected int, got str\n\n\na: str\na = foo() # Expected str, got int\n```\n\nWith the quick-fix, you can modify the problematic types:\n\n```\ndef foo() -> str:\n    return \"abc\"\n\n\na: str\na = foo()\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/state.py",
+      "language": "Python",
+      "line": 160,
+      "offset": 26,
+      "length": 10,
+      "code": {
+        "startLine": 158,
+        "length": 10,
+        "offset": 193,
+        "surroundingCode": "    async def get_note(self, note_id) -> Note:\n        res = await self.http.request(Route('POST', '/api/notes/show'), json={\"noteId\": note_id}, auth=True, lower=True)\n        return Note(res, state=self)\n\n    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,):"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyTypeCheckerInspection"
+  },
+  "hash": "208c5b3add33a131c067226fd167d658d69bde019e4ac0a8df8077741b9257ff"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Incorrect type",
+  "severity": "High",
+  "comment": "Expected type 'ConnectionState', got 'NoteActions' instead",
+  "detailsInfo": "Reports type errors in function call expressions, targets, and return values. In a dynamically typed language, this is possible in a limited number of cases.\n\nTypes of function parameters can be specified in\ndocstrings or in Python 3 function annotations.\n\n**Example:**\n\n```\ndef foo() -> int:\n    return \"abc\" # Expected int, got str\n\n\na: str\na = foo() # Expected str, got int\n```\n\nWith the quick-fix, you can modify the problematic types:\n\n```\ndef foo() -> str:\n    return \"abc\"\n\n\na: str\na = foo()\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/state.py",
+      "language": "Python",
+      "line": 164,
+      "offset": 25,
+      "length": 10,
+      "code": {
+        "startLine": 162,
+        "length": 10,
+        "offset": 335,
+        "surroundingCode": "    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,):\n        res = await self.http.request(Route('POST', '/api/notes/replies'), json={\"noteId\": note_id, \"sinceId\": since_id, \"untilId\": until_id, \"limit\": limit}, auth=True, lower=True)\n        return [Note(i, state=self) for i in res]\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyTypeCheckerInspection"
+  },
+  "hash": "9611d8c094d114b09014a2af35be07d07259987d559c4b3e5815cbe54283bcf3"
 },{
   "tool": "Code Inspection",
   "category": "Python",
