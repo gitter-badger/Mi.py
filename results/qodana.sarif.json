@@ -1799,19 +1799,19 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
+                  "enabled": false,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
+                    "ideaSeverity": "WARNING",
                     "tags": [
                       "ideaSeverity"
                     ]
@@ -1833,19 +1833,19 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
+                  "enabled": true,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
+                    "ideaSeverity": "WEAK WARNING",
                     "tags": [
                       "ideaSeverity"
                     ]
@@ -3601,6 +3601,40 @@
                 ]
               },
               {
+                "id": "DjangoCloseTagInspection",
+                "shortDescription": {
+                  "text": "Mismatched opening and closing tags"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Django",
+                      "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "PyProtectedMemberInspection",
                 "shortDescription": {
                   "text": "Accessing a protected member of a class or a module"
@@ -3658,40 +3692,6 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "DjangoCloseTagInspection",
-                "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
-                },
-                "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Django",
-                      "index": 7,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4463,40 +4463,6 @@
                 ]
               },
               {
-                "id": "XmlDuplicatedId",
-                "shortDescription": {
-                  "text": "Duplicate 'id' attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a duplicate 'id' attribute in XML.",
-                  "markdown": "Reports a duplicate `id` attribute in XML."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 3,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JsonSchemaDeprecation",
                 "shortDescription": {
                   "text": "Deprecated JSON property"
@@ -4520,6 +4486,40 @@
                     "target": {
                       "id": "JSON and JSON5",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDuplicatedId",
+                "shortDescription": {
+                  "text": "Duplicate 'id' attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a duplicate 'id' attribute in XML.",
+                  "markdown": "Reports a duplicate `id` attribute in XML."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 3,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6129,40 +6129,6 @@
                 ]
               },
               {
-                "id": "RegExpEscapedMetaCharacter",
-                "shortDescription": {
-                  "text": "Escaped meta character"
-                },
-                "fullDescription": {
-                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
-                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "LossyEncoding",
                 "shortDescription": {
                   "text": "Lossy encoding"
@@ -6186,6 +6152,40 @@
                     "target": {
                       "id": "Internationalization",
                       "index": 14,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpEscapedMetaCharacter",
+                "shortDescription": {
+                  "text": "Escaped meta character"
+                },
+                "fullDescription": {
+                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
+                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 5,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6729,7 +6729,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/yupix/Mi.py",
-          "revisionId": "d98cbb58bb5e88f4a41389c663f8b59ab72719ce",
+          "revisionId": "df1d95efd90af2a71575556a226fe5fffadcf178",
           "branch": "develop",
           "properties": {
             "lastAuthorName": "yupix",
@@ -6745,620 +6745,37 @@
       ],
       "results": [
         {
-          "ruleId": "PyAbstractClassInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Class AbstractBotBase must implement all abstract methods",
-            "markdown": "Class AbstractBotBase must implement all abstract methods"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/abc/ext/bot.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 12,
-                  "startColumn": 7,
-                  "charOffset": 290,
-                  "charLength": 15,
-                  "snippet": {
-                    "text": "AbstractBotBase"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 10,
-                  "startColumn": 1,
-                  "charOffset": 282,
-                  "charLength": 151,
-                  "snippet": {
-                    "text": "\n\nclass AbstractBotBase(AbstractGroupMixin):\n    @abstractmethod\n    async def can_run(self, ctx: AbstractContext, *, call_once: bool = False) -> bool:"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "dd5f8d1042e0cdba9a557b0b2fdece818ac961a6277cc839b65ccf5afc8ed4c3"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnboundLocalVariableInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Local variable 'checks' might be referenced before assignment",
-            "markdown": "Local variable 'checks' might be referenced before assignment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 109,
-                  "startColumn": 27,
-                  "charOffset": 3898,
-                  "charLength": 6,
-                  "snippet": {
-                    "text": "checks"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 107,
-                  "startColumn": 1,
-                  "charOffset": 3809,
-                  "charLength": 157,
-                  "snippet": {
-                    "text": "            checks = kwargs.get('checks', [])\n        finally:\n            self.checks = checks\n        self.cog = None\n        parent = kwargs.get('parent')"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "fc8adb3dd15e1427511373cbe5023d45aa5e3418298f3fc2e078d0135b968317"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnboundLocalVariableInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Name '__path__' can be undefined",
-            "markdown": "Name '__path__' can be undefined"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/__init__.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 9,
-                  "startColumn": 46,
-                  "charOffset": 262,
-                  "charLength": 8,
-                  "snippet": {
-                    "text": "__path__"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 7,
-                  "startColumn": 1,
-                  "charOffset": 194,
-                  "charLength": 107,
-                  "snippet": {
-                    "text": "__version__ = \"1.0.3\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "4cf7ae0dccb3c81843753033a4d00c7785eb32d9398aad7f158dfe590d49083e"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyPropertyDefinitionInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Getter should return or yield something",
-            "markdown": "Getter should return or yield something"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/abc/ext/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 8,
-                  "startColumn": 9,
-                  "charOffset": 140,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "command"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 6,
-                  "startColumn": 1,
-                  "charOffset": 98,
-                  "charLength": 70,
-                  "snippet": {
-                    "text": "    @property\n    @abstractmethod\n    def command(self):\n        pass\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "e308ade67308be3a90789b056b83c21ad85985d244baa4f1123dd56fdc7a73ed"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyPropertyDefinitionInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Getter should return or yield something",
-            "markdown": "Getter should return or yield something"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/abc/ext/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 22,
-                  "startColumn": 9,
-                  "charOffset": 402,
-                  "charLength": 16,
-                  "snippet": {
-                    "text": "full_parent_name"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 20,
-                  "startColumn": 1,
-                  "charOffset": 360,
-                  "charLength": 86,
-                  "snippet": {
-                    "text": "    @property\n    @abstractmethod\n    def full_parent_name(self) -> str:\n        pass\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "3b94a8eb511ffab6af1bec4b4b2c5914b94956cb0bd24e4f0a127c8f057c3d73"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyPropertyDefinitionInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Getter should return or yield something",
-            "markdown": "Getter should return or yield something"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/abc/ext/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 27,
-                  "startColumn": 9,
-                  "charOffset": 489,
-                  "charLength": 14,
-                  "snippet": {
-                    "text": "qualified_name"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 25,
-                  "startColumn": 1,
-                  "charOffset": 447,
-                  "charLength": 84,
-                  "snippet": {
-                    "text": "    @property\n    @abstractmethod\n    def qualified_name(self) -> str:\n        pass\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "1543b1cd1176e93c386037ec73d8b39797da405d7411cdb535fbdbfa1a55e2a0"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyCallingNonCallableInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "'Command' object is not callable",
-            "markdown": "'Command' object is not callable"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 63,
-                  "startColumn": 22,
-                  "charOffset": 2385,
-                  "charLength": 50,
-                  "snippet": {
-                    "text": "command(name=name, cls=cls, *args, **kwargs)(func)"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 61,
-                  "startColumn": 1,
-                  "charOffset": 2256,
-                  "charLength": 206,
-                  "snippet": {
-                    "text": "        def decorator(func: Callable[..., Any]):  # TODO:ここやる\n            kwargs.setdefault('parent', self)\n            result = command(name=name, cls=cls, *args, **kwargs)(func)\n            return result\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "69c46bf50a6edd973bcbf58d5ff7140b34298c7783a74089cca1976d4cfe1ca7"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyMethodMayBeStaticInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Method 'call_after_hooks' may be 'static'",
-            "markdown": "Method `call_after_hooks` may be 'static'"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 130,
-                  "startColumn": 15,
-                  "charOffset": 4518,
-                  "charLength": 16,
-                  "snippet": {
-                    "text": "call_after_hooks"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 128,
-                  "startColumn": 1,
-                  "charOffset": 4478,
-                  "charLength": 134,
-                  "snippet": {
-                    "text": "        return self.name\n\n    async def call_after_hooks(self, ctx):\n        hook = ctx.bot._after_invoke\n        if hook is not None:"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "59eceba8aba04efd73e8eb40403e54128e6e332f3d25a993526a4cafda0fdeab"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyMethodMayBeStaticInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Method 'on_message' may be 'static'",
-            "markdown": "Method `on_message` may be 'static'"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "examples/use_class.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 28,
-                  "startColumn": 15,
-                  "charOffset": 716,
-                  "charLength": 10,
-                  "snippet": {
-                    "text": "on_message"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 26,
-                  "startColumn": 1,
-                  "charOffset": 665,
-                  "charLength": 189,
-                  "snippet": {
-                    "text": "        self.task.stop()  # タスクを止める\n\n    async def on_message(self, note: Note):\n        print(\n            f\"{note.author.instance.name} | {note.author.username}さんがノートしました: {note.content}\""
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "8c53e9edfe0562802e59493d89444a0e584f03caf097ba4b36c49ca2c0f3c571"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyArgumentListInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Unexpected argument",
-            "markdown": "Unexpected argument"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 63,
-                  "startColumn": 50,
-                  "charOffset": 2413,
-                  "charLength": 5,
-                  "snippet": {
-                    "text": "*args"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 61,
-                  "startColumn": 1,
-                  "charOffset": 2256,
-                  "charLength": 206,
-                  "snippet": {
-                    "text": "        def decorator(func: Callable[..., Any]):  # TODO:ここやる\n            kwargs.setdefault('parent', self)\n            result = command(name=name, cls=cls, *args, **kwargs)(func)\n            return result\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "4557540c3975d2bc344eb0b65e26d4a268105aaa3718f74fc343b37998f7302d"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyArgumentListInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Unexpected argument",
-            "markdown": "Unexpected argument"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/client.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 44,
-                  "startColumn": 88,
-                  "charOffset": 1532,
-                  "charLength": 9,
-                  "snippet": {
-                    "text": "**options"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 42,
-                  "startColumn": 1,
-                  "charOffset": 1383,
-                  "charLength": 219,
-                  "snippet": {
-                    "text": "\n    def _get_state(self, **options: Any) -> ConnectionState:\n        return ConnectionState(dispatch=self.dispatch, http=self.http, loop=self.loop, **options)\n\n    async def on_ready(self, ws: ClientWebSocketResponse):"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "b60663d9373c5bab0907a65700e0e86e168cc70959c71c7ba51f1bcc97984501"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
           "ruleId": "PyUnusedLocalInspection",
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Local variable 'cls' value is not used",
-            "markdown": "Local variable 'cls' value is not used"
+            "text": "Parameter 'kwargs' value is not used",
+            "markdown": "Parameter 'kwargs' value is not used"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "mi/ext/commands/cog.py",
+                  "uri": "mi/ext/commands/core.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 109,
-                  "startColumn": 9,
-                  "charOffset": 4286,
-                  "charLength": 3,
+                  "startLine": 20,
+                  "startColumn": 42,
+                  "charOffset": 545,
+                  "charLength": 8,
                   "snippet": {
-                    "text": "cls"
+                    "text": "**kwargs"
                   },
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 107,
+                  "startLine": 18,
                   "startColumn": 1,
-                  "charOffset": 4232,
-                  "charLength": 177,
+                  "charOffset": 474,
+                  "charLength": 186,
                   "snippet": {
-                    "text": "\n    def _inject(self, bot: AbstractBotBase):\n        cls = self.__class__\n        for index, command in enumerate(self.__cog_commands__):\n            if command.parent is None:"
+                    "text": "\nclass Command(_BaseCommand):\n    def __init__(self, func, regex: str, **kwargs):\n        if not asyncio.iscoroutinefunction(func):\n            raise TypeError(f'{func}はコルーチンでなければなりません')"
                   }
                 }
               },
@@ -7371,7 +6788,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "86992b421f9f9024111b9f52c1452d54698cd99ad88cfa32a72ff6cb81df4cc5"
+            "equalIndicator/v1": "498f2aae086b49ecc9d0cc822a6ea4a18848f7228a1397ebdb3f8a56813a5c69"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7555,9 +6972,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 382,
+                  "startLine": 387,
                   "startColumn": 32,
-                  "charOffset": 12756,
+                  "charOffset": 12972,
                   "charLength": 22,
                   "snippet": {
                     "text": "reconnect: bool = True"
@@ -7565,9 +6982,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 380,
+                  "startLine": 385,
                   "startColumn": 1,
-                  "charOffset": 12678,
+                  "charOffset": 12894,
                   "charLength": 197,
                   "snippet": {
                     "text": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -7583,7 +7000,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "3cf0e1f432e48d98283055fd5a67e4e05c1532394018152f683ece1e4bbbd606"
+            "equalIndicator/v1": "cff9b2a4b5673d50bcc2a8b40f0506b02505f3fdc168d67429290f4c91f8e75e"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7911,37 +7328,37 @@
           }
         },
         {
-          "ruleId": "PyShadowingNamesInspection",
+          "ruleId": "PyUnboundLocalVariableInspection",
           "kind": "fail",
-          "level": "note",
+          "level": "warning",
           "message": {
-            "text": "Shadows name 'command' from outer scope",
-            "markdown": "Shadows name 'command' from outer scope"
+            "text": "Name '__path__' can be undefined",
+            "markdown": "Name '__path__' can be undefined"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
+                  "uri": "mi/__init__.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 24,
-                  "startColumn": 13,
-                  "charOffset": 869,
-                  "charLength": 7,
+                  "startLine": 9,
+                  "startColumn": 46,
+                  "charOffset": 262,
+                  "charLength": 8,
                   "snippet": {
-                    "text": "command"
+                    "text": "__path__"
                   },
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 22,
+                  "startLine": 7,
                   "startColumn": 1,
-                  "charOffset": 809,
-                  "charLength": 211,
+                  "charOffset": 194,
+                  "charLength": 107,
                   "snippet": {
-                    "text": "\n    def recursively_remove_all_commands(self):\n        for command in self.all_commands.copy().values():\n            if isinstance(command, GroupMixin):\n                command.recursively_remove_all_commands()"
+                    "text": "__version__ = \"1.0.3\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
                   }
                 }
               },
@@ -7954,47 +7371,47 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "e9ed579d85a03b60fd520899b0a06e782f148c5ad74082c186f43f66d6edc07f"
+            "equalIndicator/v1": "4cf7ae0dccb3c81843753033a4d00c7785eb32d9398aad7f158dfe590d49083e"
           },
           "properties": {
-            "ideaSeverity": "WEAK WARNING",
+            "ideaSeverity": "WARNING",
             "tags": [
               "ideaSeverity"
             ]
           }
         },
         {
-          "ruleId": "PyShadowingNamesInspection",
+          "ruleId": "PyClassHasNoInitInspection",
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Shadows name 'command' from outer scope",
-            "markdown": "Shadows name 'command' from outer scope"
+            "text": "Class has no __init__ method",
+            "markdown": "Class has no __init__ method"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
+                  "uri": "mi/abc/ext/bot.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 29,
-                  "startColumn": 27,
-                  "charOffset": 1094,
-                  "charLength": 7,
+                  "startLine": 9,
+                  "startColumn": 7,
+                  "charOffset": 205,
+                  "charLength": 15,
                   "snippet": {
-                    "text": "command"
+                    "text": "AbstractBotBase"
                   },
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 27,
+                  "startLine": 7,
                   "startColumn": 1,
-                  "charOffset": 1021,
-                  "charLength": 223,
+                  "charOffset": 197,
+                  "charLength": 86,
                   "snippet": {
-                    "text": "            self.remove_command(command.name)\n\n    def add_command(self, command: AbstractCommand):\n        if not isinstance(command, Command):\n            raise TypeError(f'{command} passed must be a subclass of Command')"
+                    "text": "\n\nclass AbstractBotBase:\n    @abstractmethod\n    async def _on_message(self, message):"
                   }
                 }
               },
@@ -8007,219 +7424,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "36fb36e47720464e1d595854f8847dd9909df47618582a5a39e457694e56d00a"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyShadowingNamesInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Shadows name 'command' from outer scope",
-            "markdown": "Shadows name 'command' from outer scope"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 47,
-                  "startColumn": 9,
-                  "charOffset": 1776,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "command"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 45,
-                  "startColumn": 1,
-                  "charOffset": 1726,
-                  "charLength": 145,
-                  "snippet": {
-                    "text": "\n    def remove_command(self, name: str):\n        command = self.all_commands.pop(name, None)\n        if command is None:\n            return None"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "80dad84a6e132510e6e9ea9162a1fc01a77a3fdb237b5cb92912ee2b63661608"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyShadowingNamesInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Shadows name 'command' from outer scope",
-            "markdown": "Shadows name 'command' from outer scope"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 69,
-                  "startColumn": 29,
-                  "charOffset": 2518,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "command"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 67,
-                  "startColumn": 1,
-                  "charOffset": 2488,
-                  "charLength": 156,
-                  "snippet": {
-                    "text": "\n\ndef hooked_wrapped_callback(command: 'Command', ctx, coro):\n    @functools.wraps(coro)\n    async def wrapped(*args: Tuple[Any], **kwargs: Dict[Any, Any]):"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "113428710fc257f0df357908efa98d294cb9ffaea6a8fdd86892a95922046c64"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyShadowingNamesInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Shadows name 'command' from outer scope",
-            "markdown": "Shadows name 'command' from outer scope"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 117,
-                  "startColumn": 9,
-                  "charOffset": 4146,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "command"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 115,
-                  "startColumn": 1,
-                  "charOffset": 4078,
-                  "charLength": 161,
-                  "snippet": {
-                    "text": "    def full_parent_name(self) -> str:\n        entries = []\n        command = self\n        while command.parent is not None:\n            command = command.parent"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "87b50aec14eff68d6d07e764a818cc0d0269b0b0b1afbbdff893d33e35ed0156"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyShadowingNamesInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Shadows name 'command' from outer scope",
-            "markdown": "Shadows name 'command' from outer scope"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 119,
-                  "startColumn": 13,
-                  "charOffset": 4215,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "command"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 117,
-                  "startColumn": 1,
-                  "charOffset": 4138,
-                  "charLength": 185,
-                  "snippet": {
-                    "text": "        command = self\n        while command.parent is not None:\n            command = command.parent\n            entries.append(command.name)\n        return ' '.join(reversed(entries))"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "f44a9fae6c0a6ff9be0aef60c2655742243775957f38af1e90113a562733a0eb"
+            "equalIndicator/v1": "f16717ecad7ca99d38924ef363bef7d51192c4386c3c2474d560922503e27c34"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8721,9 +7926,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 191,
+                  "startLine": 141,
                   "startColumn": 15,
-                  "charOffset": 6341,
+                  "charOffset": 4571,
                   "charLength": 11,
                   "snippet": {
                     "text": "cog._inject"
@@ -8731,9 +7936,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 189,
+                  "startLine": 139,
                   "startColumn": 1,
-                  "charOffset": 6276,
+                  "charOffset": 4506,
                   "charLength": 119,
                   "snippet": {
                     "text": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
@@ -8749,7 +7954,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "c204bc6b230440d861709c16101eaeacec13bb24e2f5c9edc37803c08ca82df7"
+            "equalIndicator/v1": "a554f24be55abe6af94b812f6646b4295aa96901e0c31a9ba0802b2086032273"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8774,9 +7979,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 200,
+                  "startLine": 150,
                   "startColumn": 9,
-                  "charOffset": 6574,
+                  "charOffset": 4804,
                   "charLength": 10,
                   "snippet": {
                     "text": "cog._eject"
@@ -8784,9 +7989,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 198,
+                  "startLine": 148,
                   "startColumn": 1,
-                  "charOffset": 6546,
+                  "charOffset": 4776,
                   "charLength": 64,
                   "snippet": {
                     "text": "            return\n\n        cog._eject(self)\n\n        return cog"
@@ -8802,113 +8007,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "62e6f0e1bb3a0cb2d3e9a7ead6ed166f1212f5131948cbcad1304a956c73f9ca"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyProtectedMemberInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Access to a protected member _update_copy of a class",
-            "markdown": "Access to a protected member _update_copy of a class"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/cog.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 73,
-                  "startColumn": 39,
-                  "charOffset": 2909,
-                  "charLength": 14,
-                  "snippet": {
-                    "text": "c._update_copy"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 71,
-                  "startColumn": 1,
-                  "charOffset": 2794,
-                  "charLength": 248,
-                  "snippet": {
-                    "text": "        self = super().__new__(cls)\n        cmd_attrs = cls.__cog_settings__\n        self.__cog_commands__ = tuple(c._update_copy(cmd_attrs) for c in cls.__cog_commands__)\n\n        lookup = {cmd.qualified_name: cmd for cmd in self.__cog_commands__}"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "ac34a4acaaf552a7b35ac92ebb39c9c3d86713468227fdf3ea3b2caa3c96486f"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyProtectedMemberInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Access to a protected member _after_invoke of a class",
-            "markdown": "Access to a protected member _after_invoke of a class"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/ext/commands/core.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 131,
-                  "startColumn": 16,
-                  "charOffset": 4562,
-                  "charLength": 21,
-                  "snippet": {
-                    "text": "ctx.bot._after_invoke"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 129,
-                  "startColumn": 1,
-                  "charOffset": 4503,
-                  "charLength": 137,
-                  "snippet": {
-                    "text": "\n    async def call_after_hooks(self, ctx):\n        hook = ctx.bot._after_invoke\n        if hook is not None:\n            await hook(ctx)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "a79353604b9da8d1a7b1fdd5e1de8e2b448fb3e5a9096198a314684abc720607"
+            "equalIndicator/v1": "42403e93892b452fd89ae6dfdc27cb229d7f61de4668262cf1b8fd0f10ec0b95"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8975,33 +8074,33 @@
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Access to a protected member _connection of a class",
-            "markdown": "Access to a protected member _connection of a class"
+            "text": "Access to a protected member _on_message of a class",
+            "markdown": "Access to a protected member _on_message of a class"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "mi/gateway.py",
+                  "uri": "mi/state.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 36,
-                  "startColumn": 26,
-                  "charOffset": 1012,
-                  "charLength": 18,
+                  "startLine": 339,
+                  "startColumn": 9,
+                  "charOffset": 11996,
+                  "charLength": 23,
                   "snippet": {
-                    "text": "client._connection"
+                    "text": "self.client._on_message"
                   },
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 34,
+                  "startLine": 337,
                   "startColumn": 1,
-                  "charOffset": 923,
-                  "charLength": 205,
+                  "charOffset": 11869,
+                  "charLength": 234,
                   "snippet": {
-                    "text": "        ws = cls(socket)\n        ws._dispatch = client.dispatch\n        ws._connection = client._connection\n        ws._misskey_parsers = client._connection.parsers\n        client.dispatch('ready', socket)"
+                    "text": "        note = Note(message, state=self)\n        # Router(self.http.ws).capture_message(note.id) TODO: capture message\n        self.client._on_message(note)\n\n    async def follow_user(self, user_id: str) -> tuple[bool, Optional[str]]:"
                   }
                 }
               },
@@ -9014,7 +8113,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "ac044ba627ec97a0f5b2c56d443c426b144b990be36c92c5f49a919346cf8d82"
+            "equalIndicator/v1": "f8ed15c8ebea6916e882d4dd19ab5276ec0aadb8ba3a4af10146ddd42ae3d9d5"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -9039,7 +8138,60 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 37,
+                  "startLine": 34,
+                  "startColumn": 26,
+                  "charOffset": 1012,
+                  "charLength": 18,
+                  "snippet": {
+                    "text": "client._connection"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 32,
+                  "startColumn": 1,
+                  "charOffset": 923,
+                  "charLength": 205,
+                  "snippet": {
+                    "text": "        ws = cls(socket)\n        ws._dispatch = client.dispatch\n        ws._connection = client._connection\n        ws._misskey_parsers = client._connection.parsers\n        client.dispatch('ready', socket)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "cb82104c3651bf1b7fc6c1189ce4be6b91029dd662057f0380dd37f21eacd948"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyProtectedMemberInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Access to a protected member _connection of a class",
+            "markdown": "Access to a protected member _connection of a class"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "mi/gateway.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 35,
                   "startColumn": 31,
                   "charOffset": 1061,
                   "charLength": 18,
@@ -9049,7 +8201,7 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 35,
+                  "startLine": 33,
                   "startColumn": 1,
                   "charOffset": 948,
                   "charLength": 225,
@@ -9067,7 +8219,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "1dd952e2b7529215fe299ca4bf0a83a4f0b4233191b49b242c413877f4cb160a"
+            "equalIndicator/v1": "cb7208e03602cb7ce798da42117e6a9be65adfc02c8308ed1c3eb87dc8cf92d5"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -9145,9 +8297,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 48,
+                  "startLine": 45,
                   "startColumn": 24,
-                  "charOffset": 1426,
+                  "charOffset": 1325,
                   "charLength": 4,
                   "snippet": {
                     "text": "None"
@@ -9155,12 +8307,12 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 46,
+                  "startLine": 43,
                   "startColumn": 1,
-                  "charOffset": 1310,
+                  "charOffset": 1209,
                   "charLength": 236,
                   "snippet": {
-                    "text": "        self.origin_uri: Optional[str] = None\n        self.__extensions: Dict[str, Any] = {}\n        self.i: User = None\n        self.__cogs: Dict[str, str] = {}\n        self.strip_after_prefix = options.get(\"strip_after_prefix\", False)"
+                    "text": "        self.origin_uri: Optional[str] = None\n        self.__extensions: Dict[str, Any] = {}\n        self.i: User = None\n        self.__cogs: Dict[str, Cog] = {}\n        self.strip_after_prefix = options.get(\"strip_after_prefix\", False)"
                   }
                 }
               },
@@ -9173,7 +8325,60 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "4055c0a1c31f5087849cad3828138fc2b2fc31826b90a4acd75177162bbcec0b"
+            "equalIndicator/v1": "ebfce91580fe2d0d269909afecc2aee1ed30cbdb982749b55ac9f784c0d87cf8"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyTypeCheckerInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Expected type 'Bot', got 'BotBase' instead",
+            "markdown": "Expected type 'Bot', got 'BotBase' instead"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "mi/ext/commands/bot.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 141,
+                  "startColumn": 27,
+                  "charOffset": 4583,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "self"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 139,
+                  "startColumn": 1,
+                  "charOffset": 4506,
+                  "charLength": 119,
+                  "snippet": {
+                    "text": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "b3142bff8c8402acd3e499acc07af3574f686bb92e2e3e5188c3bc477ddd66b9"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -9253,7 +8458,7 @@
                 "region": {
                   "startLine": 137,
                   "startColumn": 42,
-                  "charOffset": 5147,
+                  "charOffset": 5155,
                   "charLength": 10,
                   "snippet": {
                     "text": "state=self"
@@ -9263,7 +8468,7 @@
                 "contextRegion": {
                   "startLine": 135,
                   "startColumn": 1,
-                  "charOffset": 4956,
+                  "charOffset": 4964,
                   "charLength": 260,
                   "snippet": {
                     "text": "        field = remove_dict_empty(field)\n        res = await self.http.request(Route('POST', '/api/notes/create'), json=field, auth=True, lower=True)\n        return Note(res[\"created_note\"], state=self)\n\n    async def create_renote(self, note_id: str) -> Note:"
@@ -9279,7 +8484,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "7b2aea2c0df8b4132a488785c78b46d4f06fcadf4b0fa451fc88f16f1c3f1dcb"
+            "equalIndicator/v1": "549ac9efbe78d161885f3356b2b3aa137cf1838595e3f0f4a839f6b4b5533bc2"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -9393,11 +8598,117 @@
               "ideaSeverity"
             ]
           }
+        },
+        {
+          "ruleId": "PyMethodMayBeStaticInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Method 'on_message' may be 'static'",
+            "markdown": "Method `on_message` may be 'static'"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "examples/use_class.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 15,
+                  "charOffset": 716,
+                  "charLength": 10,
+                  "snippet": {
+                    "text": "on_message"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 26,
+                  "startColumn": 1,
+                  "charOffset": 665,
+                  "charLength": 189,
+                  "snippet": {
+                    "text": "        self.task.stop()  # タスクを止める\n\n    async def on_message(self, note: Note):\n        print(\n            f\"{note.author.instance.name} | {note.author.username}さんがノートしました: {note.content}\""
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "8c53e9edfe0562802e59493d89444a0e584f03caf097ba4b36c49ca2c0f3c571"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyArgumentListInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unexpected argument",
+            "markdown": "Unexpected argument"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "mi/client.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 101,
+                  "charOffset": 1545,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "**options"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 42,
+                  "startColumn": 1,
+                  "charOffset": 1383,
+                  "charLength": 232,
+                  "snippet": {
+                    "text": "\n    def _get_state(self, **options: Any) -> ConnectionState:\n        return ConnectionState(dispatch=self.dispatch, http=self.http, loop=self.loop, client=self, **options)\n\n    async def on_ready(self, ws: ClientWebSocketResponse):"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "6db43f58ec1f8f03db77ea814b4e531f29a70f57acb544ea7b420b4c69962ff8"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
         }
       ],
       "automationDetails": {
-        "id": "project - 12/29/21, 4:40 AM",
-        "guid": "8d618bb6-780c-453c-8a6b-f107bcb8a42a"
+        "id": "project - 12/29/21, 4:49 AM",
+        "guid": "a8432e52-3670-4004-9c5f-e26194879c06"
       },
       "newlineSequences": [
         "\r\n",
