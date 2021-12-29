@@ -42,66 +42,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/ext/tasks/__init__.py",
+      "path": "mi/ext/commands/_types.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 1810
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "206131047122193995"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/ext/commands/cog.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 3695
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "8831789381222503117"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/drive.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 684,
+      "length": 39,
       "code": {
         "startLine": 1,
-        "length": 684,
+        "length": 39,
         "offset": 0,
-        "surroundingCode": "from typing import Any, Dict, TypedDict\n\n\nclass Properties(TypedDict):\n    \"\"\"\n    ????????\n    \"\"\"\n\n    width: int\n    height: int\n    avgColor: str\n\n\nclass Folder(TypedDict):\n    \"\"\"\n    ????????\n    \"\"\"\n\n    id: str\n    created_at: str\n    name: str\n    folders_count: int\n    files_count: int\n    parent_id: str\n    parent: Dict[str, Any]\n\n\nclass File(TypedDict):\n    \"\"\"\n    ??????\n    \"\"\"\n\n    id: str\n    created_at: str\n    name: str\n    type: str\n    md5: str\n    size: int\n    is_sensitive: bool\n    blurhash: str\n    properties: Properties\n    url: str\n    thumbnail_url: str\n    comment: str\n    folder_id: str\n    folder: Folder\n    user_id: str\n    user: Dict[str, Any]"
+        "surroundingCode": "class _BaseCommand:\n    __slots__ = ()"
       }
     }
   ],
@@ -109,7 +59,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "1839708286401909958"
+  "hash": "-5419606406837993300"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -123,41 +73,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/user.py",
+      "path": "mi/types/chat.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 11721
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "-2768375241155944583"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/chart.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 764,
+      "length": 280,
       "code": {
         "startLine": 1,
-        "length": 764,
+        "length": 280,
         "offset": 0,
-        "surroundingCode": "from typing import List, Optional\n\nfrom mi.state import ConnectionState\n\n__all__ = ['Chart', 'Local', 'Remote']\n\n\nclass Local:\n    def __init__(self, data, state: ConnectionState):\n        self.users: Optional[List[int]] = data['users']\n        self._state = state\n\n\nclass Remote:\n    def __init__(self, data, state: ConnectionState):\n        self.users: Optional[List[int]] = data['users']\n        self._state = state\n\n\nclass Chart:\n    def __init__(self, data, state: ConnectionState):\n        self.span: str = data['span']\n        self.limit: int = data['limit']\n        self.offset: int = data['offset']\n        self.local: Local = Local(data['local'], state=state)\n        self.remote: Remote = Remote(data['remote'], state=state)\n        self._state = state"
+        "surroundingCode": "from typing import List, TypedDict\n\nfrom mi.types.user import User\n\n\nclass Chat(TypedDict):\n    id: str\n    created_at: str\n    text: str\n    user_id: str\n    user: User\n    recipient_id: str\n    recipient: str\n    group_id: str\n    file_id: str\n    is_read: bool\n    reads: List"
       }
     }
   ],
@@ -165,7 +90,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-6026200973679350233"
+  "hash": "-8253008773988716331"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -179,18 +104,18 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/state.py",
+      "path": "mi/drive.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 25835
+      "length": 2343
     }
   ],
   "attributes": {
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-4886633696920595340"
+  "hash": "-4684586532959869861"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -204,16 +129,91 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/__init__.py",
+      "path": "mi/utils.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 605,
+      "length": 5641
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "8051056741960281443"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/client.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 14842
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "-2420871622578340078"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/iterators.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 2075
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "-1967524373075952149"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Cython"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/next_utils.pyx",
+      "language": "Cython",
+      "line": 1,
+      "offset": 0,
+      "length": 322,
       "code": {
         "startLine": 1,
-        "length": 605,
+        "length": 322,
         "offset": 0,
-        "surroundingCode": "__title__ = \"misskey\"\n__author__ = \"yupix\"\n__license__ = \"MIT\"\n__copyright__ = \"Copyright 2021-present yupix\"\n__author_email__ = \"yupi0982@outlook.jp\"\n__url__ = \"https://github.com/yupix/Mi.py\"\n__version__ = \"1.0.3\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *\nfrom .instance import *\nfrom .emoji import *\nfrom .user import *\nfrom .chart import *\nfrom .drive import *\nfrom .note import *\nfrom .router import *\nfrom .chat import *\nfrom .client import *\nfrom .ext import *\nfrom .gateway import *\nfrom .http import *\nfrom .iterators import *\nfrom .exception import *"
+        "surroundingCode": "import cython\n\n@cython.boundscheck(False)\n@cython.wraparound(False)\ndef check_multi_arg(*args) -> bool:\n    \"\"\"?????????????????bool?????\n\n    Parameters\n    ----------\n    args : list\n        ???????????\n\n    Returns\n    -------\n    bool\n        ???????True, ????????False\n    \"\"\"\n    return bool([i for i in args if i])"
       }
     }
   ],
@@ -221,5 +221,67 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "7584498518870014212"
+  "hash": "4870343818881493355"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "examples/use_class.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 943,
+      "code": {
+        "startLine": 1,
+        "length": 943,
+        "offset": 0,
+        "surroundingCode": "import asyncio\nfrom mi import Note\nfrom mi.ext import commands, tasks\nfrom mi.note import Note\nfrom mi.router import Router\n\nuri = \"wss://example.com/streaming\"\ntoken = \"This is your token\"\nprefix = \"tu!\"\n\n\nclass MyBot(commands.Bot):\n    def __init__(self, cmd_prefix: str):\n        super().__init__(cmd_prefix)\n\n    @tasks.loop(60)\n    async def task(self):\n        print(\"?????????\")\n\n    async def on_ready(self, ws):\n        print(\"work on my machine\")\n        await Router(ws).connect_channel([\"global\", \"main\"])  # global?main????????\n        self.task.start()  # ????????\n        res = await self.post_note(\"Hello~~~~~\")  # ??????\n        print(res.content)\n        self.task.stop()  # ???????\n\n    async def on_message(self, note: Note):\n        print(\n            f\"{note.author.instance.name} | {note.author.username}??????????: {note.content}\"\n        )\n\n\nif __name__ == \"__main__\":\n    asyncio.run(MyBot(prefix).start(uri, token))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "-6208493429286562723"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "examples/use_instance.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 0,
+      "length": 888,
+      "code": {
+        "startLine": 1,
+        "length": 888,
+        "offset": 0,
+        "surroundingCode": "import asyncio\nfrom mi import Client, Drive, Note, Router\nfrom mi.ext import tasks\n\nuri = \"wss://example.com/streaming\"\ntoken = \"This is your token\"\nbot = Client()\n\n\n@tasks.loop(60)\nasync def task():\n    print(\"?????????\")\n\n\n@bot.listen()\nasync def on_message(note: Note):\n    print(\n        f\"{note.author.instance.name} | {note.author.username}??????????: {note.content}\"\n    )\n\n\n@bot.listen()\nasync def on_reaction(ctx: Note):\n    print(\n        f\"{ctx.author.instance.name} | {ctx.author.name}???????????????: {ctx.reactions}\"\n    )\n\n\n@bot.event()\nasync def on_ready(ws):\n    print(\"work on my machine\")\n    await Router(ws).connect_channel([\"global\", \"main\"])  # global?main????????\n    task.start()  # ??????\n    res = await bot.post_note(\"Hello World\")  # ??????\n    print(res.content)\n    task.stop()  # ???????\n\n\nif __name__ == \"__main__\":\n    asyncio.run(bot.start(uri, token))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "4395427497265619542"
 }]}

@@ -325,7 +325,7 @@
         "startLine": 7,
         "length": 8,
         "offset": 68,
-        "surroundingCode": "__version__ = \"1.0.3\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
+        "surroundingCode": "__version__ = \"2.0.0\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
       }
     }
   ],
@@ -333,7 +333,7 @@
     "module": "project",
     "inspectionName": "PyUnboundLocalVariableInspection"
   },
-  "hash": "4cf7ae0dccb3c81843753033a4d00c7785eb32d9398aad7f158dfe590d49083e"
+  "hash": "cb17ed8bde90e59df0e39b9594d8572952f2312671e7e72340569d44a803855d"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -725,7 +725,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "739ba3bd32bf78b1df1f7877e3476847b733e4dff78752c0855929cda6dbe785"
+  "hash": "f9f07b47cd7edfc01254b2874110b1b0452152abea25b8f06ecddd3da0100d21"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -941,7 +941,7 @@
         "startLine": 158,
         "length": 10,
         "offset": 193,
-        "surroundingCode": "    async def get_note(self, note_id) -> Note:\n        res = await self.http.request(Route('POST', '/api/notes/show'), json={\"noteId\": note_id}, auth=True, lower=True)\n        return Note(res, state=self)\n\n    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,):"
+        "surroundingCode": "    async def get_note(self, note_id) -> Note:\n        res = await self.http.request(Route('POST', '/api/notes/show'), json={\"noteId\": note_id}, auth=True, lower=True)\n        return Note(res, state=self)\n\n    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,) -> List[Note]:"
       }
     }
   ],
@@ -949,7 +949,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "208c5b3add33a131c067226fd167d658d69bde019e4ac0a8df8077741b9257ff"
+  "hash": "1aa8b8db08396aff34e7880c1c31800d70b1ee4d22a50dc3474a8bba7f3d54de"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -968,8 +968,8 @@
       "code": {
         "startLine": 162,
         "length": 10,
-        "offset": 335,
-        "surroundingCode": "    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,):\n        res = await self.http.request(Route('POST', '/api/notes/replies'), json={\"noteId\": note_id, \"sinceId\": since_id, \"untilId\": until_id, \"limit\": limit}, auth=True, lower=True)\n        return [Note(i, state=self) for i in res]\n\n"
+        "offset": 349,
+        "surroundingCode": "    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,) -> List[Note]:\n        res = await self.http.request(Route('POST', '/api/notes/replies'), json={\"noteId\": note_id, \"sinceId\": since_id, \"untilId\": until_id, \"limit\": limit}, auth=True, lower=True)\n        return [Note(i, state=self) for i in res]\n\n"
       }
     }
   ],
@@ -977,7 +977,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "9611d8c094d114b09014a2af35be07d07259987d559c4b3e5815cbe54283bcf3"
+  "hash": "4234b976f9795493c7f4ec4f12457ab4b9302b7058fd7ca4e2def6b74c5aaf28"
 },{
   "tool": "Code Inspection",
   "category": "Python",
