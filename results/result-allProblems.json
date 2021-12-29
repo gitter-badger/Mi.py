@@ -269,7 +269,7 @@
         "startLine": 7,
         "length": 8,
         "offset": 68,
-        "surroundingCode": "__version__ = \"2.0.0\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
+        "surroundingCode": "__version__ = \"2.1.0\"\n\n__path__ = __import__(\"pkgutil\").extend_path(__path__, __name__)\n\nfrom .abc import *"
       }
     }
   ],
@@ -277,7 +277,7 @@
     "module": "project",
     "inspectionName": "PyUnboundLocalVariableInspection"
   },
-  "hash": "cb17ed8bde90e59df0e39b9594d8572952f2312671e7e72340569d44a803855d"
+  "hash": "c1927ac68dd62bc25e440ca9032a112270f85a0b7318afc2358f05e7bb4fa4e9"
 },{
   "tool": "Code Inspection",
   "category": "Python",
