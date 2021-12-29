@@ -122,11 +122,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 393,
+      "line": 490,
       "offset": 32,
       "length": 22,
       "code": {
-        "startLine": 391,
+        "startLine": 488,
         "length": 22,
         "offset": 78,
         "surroundingCode": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -137,7 +137,7 @@
     "module": "project",
     "inspectionName": "PyUnusedLocalInspection"
   },
-  "hash": "cdfead8ed65c97491ec7bbe59814b86a825c0b599b1c8444e48e63bdabd57f91"
+  "hash": "f9c9bef6c081eb58fe41ca4d48da598753f450825317d1d845c730d7c7beea60"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -710,11 +710,11 @@
       "type": "file",
       "path": "mi/state.py",
       "language": "Python",
-      "line": 347,
+      "line": 304,
       "offset": 9,
       "length": 23,
       "code": {
-        "startLine": 345,
+        "startLine": 302,
         "length": 23,
         "offset": 127,
         "surroundingCode": "        note = Note(message, state=self)\n        # Router(self.http.ws).capture_message(note.id) TODO: capture message\n        self.client._on_message(note)\n\n    async def follow_user(self, user_id: str) -> tuple[bool, Optional[str]]:"
@@ -725,7 +725,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "f9f07b47cd7edfc01254b2874110b1b0452152abea25b8f06ecddd3da0100d21"
+  "hash": "f7b54d8152046f28995a1daa29084af4ea698be65a094b2c832afa9cf2e96773"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -906,11 +906,11 @@
       "type": "file",
       "path": "mi/state.py",
       "language": "Python",
-      "line": 137,
+      "line": 94,
       "offset": 42,
       "length": 10,
       "code": {
-        "startLine": 135,
+        "startLine": 92,
         "length": 10,
         "offset": 191,
         "surroundingCode": "        field = remove_dict_empty(field)\n        res = await self.http.request(Route('POST', '/api/notes/create'), json=field, auth=True, lower=True)\n        return Note(res[\"created_note\"], state=self)\n\n    async def create_renote(self, note_id: str) -> Note:"
@@ -921,7 +921,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "549ac9efbe78d161885f3356b2b3aa137cf1838595e3f0f4a839f6b4b5533bc2"
+  "hash": "da557db831ee25521ccf21c1046ed1fb5912b8b9a64536bb1179dd36d588acc9"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -934,14 +934,14 @@
       "type": "file",
       "path": "mi/state.py",
       "language": "Python",
-      "line": 160,
+      "line": 117,
       "offset": 26,
       "length": 10,
       "code": {
-        "startLine": 158,
+        "startLine": 115,
         "length": 10,
         "offset": 193,
-        "surroundingCode": "    async def get_note(self, note_id) -> Note:\n        res = await self.http.request(Route('POST', '/api/notes/show'), json={\"noteId\": note_id}, auth=True, lower=True)\n        return Note(res, state=self)\n\n    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,) -> List[Note]:"
+        "surroundingCode": "    async def get_note(self, note_id) -> Note:\n        res = await self.http.request(Route('POST', '/api/notes/show'), json={\"noteId\": note_id}, auth=True, lower=True)\n        return Note(res, state=self)\n\n    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None,"
       }
     }
   ],
@@ -949,7 +949,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "1aa8b8db08396aff34e7880c1c31800d70b1ee4d22a50dc3474a8bba7f3d54de"
+  "hash": "940d7f9528d83c75637ac03c5dde1829b874dcc88cd06f554f968fbe1e7878da"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -962,14 +962,14 @@
       "type": "file",
       "path": "mi/state.py",
       "language": "Python",
-      "line": 164,
+      "line": 124,
       "offset": 25,
       "length": 10,
       "code": {
-        "startLine": 162,
+        "startLine": 122,
         "length": 10,
-        "offset": 349,
-        "surroundingCode": "    async def get_replies(self, note_id: str, since_id: Optional[str] = None, until_id: Optional[str] = None, limit: int = 10,) -> List[Note]:\n        res = await self.http.request(Route('POST', '/api/notes/replies'), json={\"noteId\": note_id, \"sinceId\": since_id, \"untilId\": until_id, \"limit\": limit}, auth=True, lower=True)\n        return [Note(i, state=self) for i in res]\n\n"
+        "offset": 207,
+        "surroundingCode": "                                      json={\"noteId\": note_id, \"sinceId\": since_id, \"untilId\": until_id, \"limit\": limit},\n                                      auth=True, lower=True)\n        return [Note(i, state=self) for i in res]\n\n"
       }
     }
   ],
@@ -977,7 +977,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "4234b976f9795493c7f4ec4f12457ab4b9302b7058fd7ca4e2def6b74c5aaf28"
+  "hash": "9d8b4cf2a075bb9b13b224e4bf2b7089f3f84a84cbf112b0e839e79231747a55"
 },{
   "tool": "Code Inspection",
   "category": "Python",

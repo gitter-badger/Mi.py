@@ -11,16 +11,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "mi/config.py",
+      "path": "mi/ext/__init__.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 492,
+      "length": 45,
       "code": {
         "startLine": 1,
-        "length": 492,
+        "length": 45,
         "offset": 0,
-        "surroundingCode": "from typing import Any, Optional\n\n\nclass Config:\n    \"\"\"\n    Bot?????????Config\n    \"\"\"\n\n    def __init__(\n            self,\n            token: Optional[str],\n            origin_uri: Optional[str],\n            profile: Any = None,\n            instance: dict = None,\n    ):\n        self.token: str = token\n        self.origin_uri: str = origin_uri\n        self.profile: Any = profile\n        self.instance: dict = instance\n\n\ni: Config = Config(token=None, origin_uri=None)\ndebug: bool = False"
+        "surroundingCode": "from .commands import *\nfrom .tasks import *"
       }
     }
   ],
@@ -28,7 +28,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "-4013073490581476328"
+  "hash": "-5358464658782618377"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -42,22 +42,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "examples/use_instance.py",
+      "path": "mi/client.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 888,
-      "code": {
-        "startLine": 1,
-        "length": 888,
-        "offset": 0,
-        "surroundingCode": "import asyncio\nfrom mi import Client, Drive, Note, Router\nfrom mi.ext import tasks\n\nuri = \"wss://example.com/streaming\"\ntoken = \"This is your token\"\nbot = Client()\n\n\n@tasks.loop(60)\nasync def task():\n    print(\"?????????\")\n\n\n@bot.listen()\nasync def on_message(note: Note):\n    print(\n        f\"{note.author.instance.name} | {note.author.username}??????????: {note.content}\"\n    )\n\n\n@bot.listen()\nasync def on_reaction(ctx: Note):\n    print(\n        f\"{ctx.author.instance.name} | {ctx.author.name}???????????????: {ctx.reactions}\"\n    )\n\n\n@bot.event()\nasync def on_ready(ws):\n    print(\"work on my machine\")\n    await Router(ws).connect_channel([\"global\", \"main\"])  # global?main????????\n    task.start()  # ??????\n    res = await bot.post_note(\"Hello World\")  # ??????\n    print(res.content)\n    task.stop()  # ???????\n\n\nif __name__ == \"__main__\":\n    asyncio.run(bot.start(uri, token))"
-      }
+      "length": 16951
     }
   ],
   "attributes": {
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "4395427497265619542"
+  "hash": "-64548987460006806"
 }]}
