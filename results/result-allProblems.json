@@ -3,6 +3,34 @@
   "category": "Python",
   "type": "Unused local symbols",
   "severity": "Moderate",
+  "comment": "Parameter 'command_prefix' value is not used",
+  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/commands/bot.py",
+      "language": "Python",
+      "line": 34,
+      "offset": 24,
+      "length": 34,
+      "code": {
+        "startLine": 32,
+        "length": 34,
+        "offset": 72,
+        "surroundingCode": "\nclass BotBase(CommandManager, AbstractBotBase):\n    def __init__(self, command_prefix: Optional[str]=None, **options: Dict[Any, Any]):\n        \"\"\"\n        .. deprecated:: v2.3.0"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnusedLocalInspection"
+  },
+  "hash": "2a81c8f2b6f579423935a1f918d74d05bf3407c10b92c1fd2ebd260a6668dd87"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unused local symbols",
+  "severity": "Moderate",
   "comment": "Parameter 'kwargs' value is not used",
   "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
   "sources": [
@@ -17,7 +45,7 @@
         "startLine": 18,
         "length": 8,
         "offset": 71,
-        "surroundingCode": "\nclass Command(_BaseCommand):\n    def __init__(self, func, regex: str, **kwargs):\n        if not asyncio.iscoroutinefunction(func):\n            raise TypeError(f'{func}????????????????')"
+        "surroundingCode": "\nclass Command(_BaseCommand):\n    def __init__(self, func, regex: str, **kwargs):\n        if not asyncio.iscoroutinefunction(func):\n            raise TypeError(f'{func}はコルーチンでなければなりません')"
       }
     }
   ],
@@ -31,90 +59,6 @@
   "category": "Python",
   "type": "Unused local symbols",
   "severity": "Moderate",
-  "comment": "Parameter 'parameters' value is not used",
-  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/http.py",
-      "language": "Python",
-      "line": 31,
-      "offset": 48,
-      "length": 17,
-      "code": {
-        "startLine": 29,
-        "length": 17,
-        "offset": 61,
-        "surroundingCode": "\nclass Route:\n    def __init__(self, method: str, path: str, **parameters: Any):\n        self.path: str = path\n        self.method: str = method"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnusedLocalInspection"
-  },
-  "hash": "b0a78f1747403551dde954cffbd32c8c0c58798062ffeb8c02127dcdbbd57512"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unused local symbols",
-  "severity": "Moderate",
-  "comment": "Parameter 'files' value is not used",
-  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/http.py",
-      "language": "Python",
-      "line": 54,
-      "offset": 46,
-      "length": 10,
-      "code": {
-        "startLine": 52,
-        "length": 10,
-        "offset": 87,
-        "surroundingCode": "        self.token: Optional[str] = None\n\n    async def request(self, route: Route, *, files=None, form=None, **kwargs) -> Any:\n        headers: Dict[str, str] = {\n            'User-Agent': self.user_agent,"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnusedLocalInspection"
-  },
-  "hash": "c84087b819fa792464455aebc22e4a5ccd571f9d45e474448917f20c0220eec2"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unused local symbols",
-  "severity": "Moderate",
-  "comment": "Parameter 'form' value is not used",
-  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/http.py",
-      "language": "Python",
-      "line": 54,
-      "offset": 58,
-      "length": 9,
-      "code": {
-        "startLine": 52,
-        "length": 9,
-        "offset": 99,
-        "surroundingCode": "        self.token: Optional[str] = None\n\n    async def request(self, route: Route, *, files=None, form=None, **kwargs) -> Any:\n        headers: Dict[str, str] = {\n            'User-Agent': self.user_agent,"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnusedLocalInspection"
-  },
-  "hash": "800c3e1b187ec0c66caa86291e13dbed7800ae088fb288fde675bc2d9659c525"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unused local symbols",
-  "severity": "Moderate",
   "comment": "Parameter 'reconnect' value is not used",
   "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
   "sources": [
@@ -122,11 +66,11 @@
       "type": "file",
       "path": "mi/client.py",
       "language": "Python",
-      "line": 490,
+      "line": 495,
       "offset": 32,
       "length": 22,
       "code": {
-        "startLine": 488,
+        "startLine": 493,
         "length": 22,
         "offset": 78,
         "surroundingCode": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -137,7 +81,7 @@
     "module": "project",
     "inspectionName": "PyUnusedLocalInspection"
   },
-  "hash": "93aea2113f62cc1dc038079dba674d968368aef2416e0631d627515d06bca068"
+  "hash": "d4b00af311632771c0f1dda8a46710571fe990c792473f3918cc350a2477be61"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -626,14 +570,14 @@
       "type": "file",
       "path": "mi/ext/commands/bot.py",
       "language": "Python",
-      "line": 141,
+      "line": 145,
       "offset": 15,
       "length": 11,
       "code": {
-        "startLine": 139,
+        "startLine": 143,
         "length": 11,
         "offset": 65,
-        "surroundingCode": "            self.remove_cog(cog_name)  # TODO: ??\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
+        "surroundingCode": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
       }
     }
   ],
@@ -641,7 +585,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "a554f24be55abe6af94b812f6646b4295aa96901e0c31a9ba0802b2086032273"
+  "hash": "1591c8db08cdc55bcce7071151fe0c7969aafa7e06625d103dc680fa3186921f"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -654,11 +598,11 @@
       "type": "file",
       "path": "mi/ext/commands/bot.py",
       "language": "Python",
-      "line": 150,
+      "line": 154,
       "offset": 9,
       "length": 10,
       "code": {
-        "startLine": 148,
+        "startLine": 152,
         "length": 10,
         "offset": 28,
         "surroundingCode": "            return\n\n        cog._eject(self)\n\n        return cog"
@@ -669,7 +613,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "42403e93892b452fd89ae6dfdc27cb229d7f61de4668262cf1b8fd0f10ec0b95"
+  "hash": "8fd0d3f8dbadc3dbb41ba9d4d5c5ba2f6c45e2a5a8c8dc802a4fad76357e1848"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -822,11 +766,11 @@
       "type": "file",
       "path": "mi/ext/commands/bot.py",
       "language": "Python",
-      "line": 45,
+      "line": 49,
       "offset": 24,
       "length": 4,
       "code": {
-        "startLine": 43,
+        "startLine": 47,
         "length": 4,
         "offset": 116,
         "surroundingCode": "        self.origin_uri: Optional[str] = None\n        self.__extensions: Dict[str, Any] = {}\n        self.i: User = None\n        self.__cogs: Dict[str, Cog] = {}\n        self.strip_after_prefix = options.get(\"strip_after_prefix\", False)"
@@ -837,7 +781,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "ebfce91580fe2d0d269909afecc2aee1ed30cbdb982749b55ac9f784c0d87cf8"
+  "hash": "ca4838c3e3cf5366f3d4448518c856c45780a4975908d59d895adafdf9a569a2"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -850,14 +794,14 @@
       "type": "file",
       "path": "mi/ext/commands/bot.py",
       "language": "Python",
-      "line": 141,
+      "line": 145,
       "offset": 27,
       "length": 4,
       "code": {
-        "startLine": 139,
+        "startLine": 143,
         "length": 4,
         "offset": 77,
-        "surroundingCode": "            self.remove_cog(cog_name)  # TODO: ??\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
+        "surroundingCode": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
       }
     }
   ],
@@ -865,7 +809,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "b3142bff8c8402acd3e499acc07af3574f686bb92e2e3e5188c3bc477ddd66b9"
+  "hash": "cf633abe70fd1c3435550ad157a439be2da0b33507649051d9d6f460a563c255"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -1053,7 +997,7 @@
         "startLine": 26,
         "length": 10,
         "offset": 51,
-        "surroundingCode": "        self.task.stop()  # ???????\n\n    async def on_message(self, note: Note):\n        print(\n            f\"{note.author.instance.name} | {note.author.username}??????????: {note.content}\""
+        "surroundingCode": "        self.task.stop()  # タスクを止める\n\n    async def on_message(self, note: Note):\n        print(\n            f\"{note.author.instance.name} | {note.author.username}さんがノートしました: {note.content}\""
       }
     }
   ],
@@ -1062,6 +1006,62 @@
     "inspectionName": "PyMethodMayBeStaticInspection"
   },
   "hash": "8c53e9edfe0562802e59493d89444a0e584f03caf097ba4b36c49ca2c0f3c571"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Incorrect call arguments",
+  "severity": "High",
+  "comment": "Unexpected argument",
+  "detailsInfo": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/state.py",
+      "language": "Python",
+      "line": 46,
+      "offset": 84,
+      "length": 9,
+      "code": {
+        "startLine": 44,
+        "length": 9,
+        "offset": 219,
+        "surroundingCode": "    async def add_reaction_to_note(self, note_id: str, reaction: str) -> bool:\n        data = {'noteId': note_id, 'reaction': reaction}\n        return bool(await self.http.request(Route('POST', '/api/reactions/create', json=data, auth=True)))\n\n    async def post_note(self,"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyArgumentListInspection"
+  },
+  "hash": "f2fb1afdd950a072868a1a2c082801b820b6986d188beed33e2118e6e86c0caf"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Incorrect call arguments",
+  "severity": "High",
+  "comment": "Unexpected argument",
+  "detailsInfo": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/state.py",
+      "language": "Python",
+      "line": 46,
+      "offset": 95,
+      "length": 9,
+      "code": {
+        "startLine": 44,
+        "length": 9,
+        "offset": 230,
+        "surroundingCode": "    async def add_reaction_to_note(self, note_id: str, reaction: str) -> bool:\n        data = {'noteId': note_id, 'reaction': reaction}\n        return bool(await self.http.request(Route('POST', '/api/reactions/create', json=data, auth=True)))\n\n    async def post_note(self,"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyArgumentListInspection"
+  },
+  "hash": "f4bb497bb0f56a4bb965a92fd00c1e8a9273db9150207ea70252cd64e7079f73"
 },{
   "tool": "Code Inspection",
   "category": "Python",

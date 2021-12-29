@@ -6,7 +6,7 @@
         "driver": {
           "name": "QDPY",
           "fullName": "Qodana for Python",
-          "version": "213.6438.53",
+          "version": "213.6670.75",
           "rules": [],
           "taxa": [
             {
@@ -84,7 +84,7 @@
         "extensions": [
           {
             "name": "org.editorconfig.editorconfigjetbrains",
-            "version": "213.6438",
+            "version": "213.6670",
             "rules": [
               {
                 "id": "EditorConfigCharClassRedundancy",
@@ -1014,7 +1014,7 @@
           },
           {
             "name": "Pythonid",
-            "version": "213.6438",
+            "version": "213.6670",
             "rules": [
               {
                 "id": "JupyterPackageInspection",
@@ -1527,13 +1527,13 @@
                 ]
               },
               {
-                "id": "PyMissingConstructorInspection",
+                "id": "PyDefaultArgumentInspection",
                 "shortDescription": {
-                  "text": "Missed call to '__init__' of the super class"
+                  "text": "The default argument is mutable"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
-                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
+                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
+                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1561,13 +1561,13 @@
                 ]
               },
               {
-                "id": "PyDefaultArgumentInspection",
+                "id": "PyMissingConstructorInspection",
                 "shortDescription": {
-                  "text": "The default argument is mutable"
+                  "text": "Missed call to '__init__' of the super class"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
-                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
+                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
+                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1935,13 +1935,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1969,13 +1969,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2343,19 +2343,19 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
+                    "ideaSeverity": "WEAK WARNING",
                     "tags": [
                       "ideaSeverity"
                     ]
@@ -2377,19 +2377,19 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
+                    "ideaSeverity": "WARNING",
                     "tags": [
                       "ideaSeverity"
                     ]
@@ -2760,7 +2760,7 @@
                   "markdown": "Reports packages mentioned in requirements files (for example, `requirements.txt` or `Pipfile`) but not installed,\nor imported but not mentioned in requirements files.\n\n\nThe IDE shows a quick-fix banner so that you can install the missing packages in one click."
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
+                  "enabled": true,
                   "level": "warning",
                   "parameters": {
                     "ideaSeverity": "WARNING",
@@ -4426,7 +4426,7 @@
           },
           {
             "name": "com.intellij",
-            "version": "213.6438.53",
+            "version": "213.6670.75",
             "rules": [
               {
                 "id": "XmlHighlighting",
@@ -4436,40 +4436,6 @@
                 "fullDescription": {
                   "text": "Reports XML validation problems in the results of a batch code inspection.",
                   "markdown": "Reports XML validation problems in the results of a batch code inspection."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 3,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "XmlDuplicatedId",
-                "shortDescription": {
-                  "text": "Duplicate 'id' attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a duplicate 'id' attribute in XML.",
-                  "markdown": "Reports a duplicate `id` attribute in XML."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -4520,6 +4486,40 @@
                     "target": {
                       "id": "JSON and JSON5",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDuplicatedId",
+                "shortDescription": {
+                  "text": "Duplicate 'id' attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a duplicate 'id' attribute in XML.",
+                  "markdown": "Reports a duplicate `id` attribute in XML."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 3,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4701,40 +4701,6 @@
                 ]
               },
               {
-                "id": "DuplicatedCode",
-                "shortDescription": {
-                  "text": "Duplicated code fragment"
-                },
-                "fullDescription": {
-                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
-                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "General",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RequiredAttributes",
                 "shortDescription": {
                   "text": "Missing required attribute"
@@ -4758,6 +4724,40 @@
                     "target": {
                       "id": "HTML",
                       "index": 8,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DuplicatedCode",
+                "shortDescription": {
+                  "text": "Duplicated code fragment"
+                },
+                "fullDescription": {
+                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
+                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "General",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6129,40 +6129,6 @@
                 ]
               },
               {
-                "id": "RegExpEscapedMetaCharacter",
-                "shortDescription": {
-                  "text": "Escaped meta character"
-                },
-                "fullDescription": {
-                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
-                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "LossyEncoding",
                 "shortDescription": {
                   "text": "Lossy encoding"
@@ -6186,6 +6152,40 @@
                     "target": {
                       "id": "Internationalization",
                       "index": 14,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpEscapedMetaCharacter",
+                "shortDescription": {
+                  "text": "Escaped meta character"
+                },
+                "fullDescription": {
+                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
+                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 5,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6410,7 +6410,7 @@
           },
           {
             "name": "com.intellij.properties",
-            "version": "213.6438",
+            "version": "213.6670",
             "rules": [
               {
                 "id": "DuplicatePropertyInspection",
@@ -6452,8 +6452,8 @@
                   "text": "Three dot characters instead of the ellipsis"
                 },
                 "fullDescription": {
-                  "text": "Reports three \"dot\" characters which are used instead of the ellipsis character.",
-                  "markdown": "Reports three \"dot\" characters which are used instead of the ellipsis character.   "
+                  "text": "Reports three \"dot\" characters which are used instead of the ellipsis character for UTF-8 properties files.",
+                  "markdown": "Reports three \"dot\" characters which are used instead of the ellipsis character for UTF-8 properties files."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6626,7 +6626,7 @@
           },
           {
             "name": "org.intellij.intelliLang",
-            "version": "213.6438",
+            "version": "213.6670",
             "rules": [
               {
                 "id": "InjectedReferences",
@@ -6672,7 +6672,7 @@
           },
           {
             "name": "org.intellij.plugins.staticAnalysis",
-            "version": "213.6438",
+            "version": "213.6670",
             "rules": [
               {
                 "id": "QodanaServiceMessage",
@@ -6721,7 +6721,14 @@
       "invocations": [
         {
           "exitCode": 0,
-          "toolExecutionNotifications": [],
+          "toolExecutionNotifications": [
+            {
+              "message": {
+                "text": "Reporting from [\"An invalid interpreter\"] 'sanity' inspections was suspended due to high problems count."
+              },
+              "level": "error"
+            }
+          ],
           "executionSuccessful": true
         }
       ],
@@ -6729,7 +6736,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/yupix/Mi.py",
-          "revisionId": "e591675da2e4fffb053ee0170e1a6cacb5782081",
+          "revisionId": "4d3cebea7b6645af5cf130506acbbe4b82719635",
           "branch": "develop",
           "properties": {
             "lastAuthorName": "yupix",
@@ -6744,6 +6751,59 @@
         }
       ],
       "results": [
+        {
+          "ruleId": "PyUnusedLocalInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Parameter 'command_prefix' value is not used",
+            "markdown": "Parameter 'command_prefix' value is not used"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "mi/ext/commands/bot.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 24,
+                  "charOffset": 796,
+                  "charLength": 34,
+                  "snippet": {
+                    "text": "command_prefix: Optional[str]=None"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 32,
+                  "startColumn": 1,
+                  "charOffset": 724,
+                  "charLength": 178,
+                  "snippet": {
+                    "text": "\nclass BotBase(CommandManager, AbstractBotBase):\n    def __init__(self, command_prefix: Optional[str]=None, **options: Dict[Any, Any]):\n        \"\"\"\n        .. deprecated:: v2.3.0"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "2a81c8f2b6f579423935a1f918d74d05bf3407c10b92c1fd2ebd260a6668dd87"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
         {
           "ruleId": "PyUnusedLocalInspection",
           "kind": "fail",
@@ -6802,165 +6862,6 @@
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Parameter 'parameters' value is not used",
-            "markdown": "Parameter 'parameters' value is not used"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/http.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 31,
-                  "startColumn": 48,
-                  "charOffset": 559,
-                  "charLength": 17,
-                  "snippet": {
-                    "text": "**parameters: Any"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 29,
-                  "startColumn": 1,
-                  "charOffset": 498,
-                  "charLength": 144,
-                  "snippet": {
-                    "text": "\nclass Route:\n    def __init__(self, method: str, path: str, **parameters: Any):\n        self.path: str = path\n        self.method: str = method"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "b0a78f1747403551dde954cffbd32c8c0c58798062ffeb8c02127dcdbbd57512"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnusedLocalInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Parameter 'files' value is not used",
-            "markdown": "Parameter 'files' value is not used"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/http.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 54,
-                  "startColumn": 46,
-                  "charOffset": 1426,
-                  "charLength": 10,
-                  "snippet": {
-                    "text": "files=None"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 52,
-                  "startColumn": 1,
-                  "charOffset": 1339,
-                  "charLength": 206,
-                  "snippet": {
-                    "text": "        self.token: Optional[str] = None\n\n    async def request(self, route: Route, *, files=None, form=None, **kwargs) -> Any:\n        headers: Dict[str, str] = {\n            'User-Agent': self.user_agent,"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "c84087b819fa792464455aebc22e4a5ccd571f9d45e474448917f20c0220eec2"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnusedLocalInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Parameter 'form' value is not used",
-            "markdown": "Parameter 'form' value is not used"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "mi/http.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 54,
-                  "startColumn": 58,
-                  "charOffset": 1438,
-                  "charLength": 9,
-                  "snippet": {
-                    "text": "form=None"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 52,
-                  "startColumn": 1,
-                  "charOffset": 1339,
-                  "charLength": 206,
-                  "snippet": {
-                    "text": "        self.token: Optional[str] = None\n\n    async def request(self, route: Route, *, files=None, form=None, **kwargs) -> Any:\n        headers: Dict[str, str] = {\n            'User-Agent': self.user_agent,"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "800c3e1b187ec0c66caa86291e13dbed7800ae088fb288fde675bc2d9659c525"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnusedLocalInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
             "text": "Parameter 'reconnect' value is not used",
             "markdown": "Parameter 'reconnect' value is not used"
           },
@@ -6972,9 +6873,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 490,
+                  "startLine": 495,
                   "startColumn": 32,
-                  "charOffset": 15448,
+                  "charOffset": 15693,
                   "charLength": 22,
                   "snippet": {
                     "text": "reconnect: bool = True"
@@ -6982,9 +6883,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 488,
+                  "startLine": 493,
                   "startColumn": 1,
-                  "charOffset": 15370,
+                  "charOffset": 15615,
                   "charLength": 197,
                   "snippet": {
                     "text": "        self.i = User(data, self._connection)\n\n    async def connect(self, *, reconnect: bool = True, timeout: int = 60) -> None:\n\n        coro = MisskeyWebSocket.from_client(self, timeout=timeout)"
@@ -7000,7 +6901,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "93aea2113f62cc1dc038079dba674d968368aef2416e0631d627515d06bca068"
+            "equalIndicator/v1": "d4b00af311632771c0f1dda8a46710571fe990c792473f3918cc350a2477be61"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7926,9 +7827,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 141,
+                  "startLine": 145,
                   "startColumn": 15,
-                  "charOffset": 4571,
+                  "charOffset": 4647,
                   "charLength": 11,
                   "snippet": {
                     "text": "cog._inject"
@@ -7936,9 +7837,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 139,
+                  "startLine": 143,
                   "startColumn": 1,
-                  "charOffset": 4506,
+                  "charOffset": 4582,
                   "charLength": 119,
                   "snippet": {
                     "text": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
@@ -7954,7 +7855,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "a554f24be55abe6af94b812f6646b4295aa96901e0c31a9ba0802b2086032273"
+            "equalIndicator/v1": "1591c8db08cdc55bcce7071151fe0c7969aafa7e06625d103dc680fa3186921f"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -7979,9 +7880,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 150,
+                  "startLine": 154,
                   "startColumn": 9,
-                  "charOffset": 4804,
+                  "charOffset": 4880,
                   "charLength": 10,
                   "snippet": {
                     "text": "cog._eject"
@@ -7989,9 +7890,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 148,
+                  "startLine": 152,
                   "startColumn": 1,
-                  "charOffset": 4776,
+                  "charOffset": 4852,
                   "charLength": 64,
                   "snippet": {
                     "text": "            return\n\n        cog._eject(self)\n\n        return cog"
@@ -8007,7 +7908,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "42403e93892b452fd89ae6dfdc27cb229d7f61de4668262cf1b8fd0f10ec0b95"
+            "equalIndicator/v1": "8fd0d3f8dbadc3dbb41ba9d4d5c5ba2f6c45e2a5a8c8dc802a4fad76357e1848"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -8297,9 +8198,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 45,
+                  "startLine": 49,
                   "startColumn": 24,
-                  "charOffset": 1325,
+                  "charOffset": 1401,
                   "charLength": 4,
                   "snippet": {
                     "text": "None"
@@ -8307,9 +8208,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 43,
+                  "startLine": 47,
                   "startColumn": 1,
-                  "charOffset": 1209,
+                  "charOffset": 1285,
                   "charLength": 236,
                   "snippet": {
                     "text": "        self.origin_uri: Optional[str] = None\n        self.__extensions: Dict[str, Any] = {}\n        self.i: User = None\n        self.__cogs: Dict[str, Cog] = {}\n        self.strip_after_prefix = options.get(\"strip_after_prefix\", False)"
@@ -8325,7 +8226,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "ebfce91580fe2d0d269909afecc2aee1ed30cbdb982749b55ac9f784c0d87cf8"
+            "equalIndicator/v1": "ca4838c3e3cf5366f3d4448518c856c45780a4975908d59d895adafdf9a569a2"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -8350,9 +8251,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 141,
+                  "startLine": 145,
                   "startColumn": 27,
-                  "charOffset": 4583,
+                  "charOffset": 4659,
                   "charLength": 4,
                   "snippet": {
                     "text": "self"
@@ -8360,9 +8261,9 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 139,
+                  "startLine": 143,
                   "startColumn": 1,
-                  "charOffset": 4506,
+                  "charOffset": 4582,
                   "charLength": 119,
                   "snippet": {
                     "text": "            self.remove_cog(cog_name)  # TODO: 作る\n\n        cog = cog._inject(self)\n        self.__cogs[cog_name] = cog\n"
@@ -8378,7 +8279,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "b3142bff8c8402acd3e499acc07af3574f686bb92e2e3e5188c3bc477ddd66b9"
+            "equalIndicator/v1": "cf633abe70fd1c3435550ad157a439be2da0b33507649051d9d6f460a563c255"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -8770,6 +8671,112 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
+                  "uri": "mi/state.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 84,
+                  "charOffset": 1854,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "json=data"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 44,
+                  "startColumn": 1,
+                  "charOffset": 1635,
+                  "charLength": 273,
+                  "snippet": {
+                    "text": "    async def add_reaction_to_note(self, note_id: str, reaction: str) -> bool:\n        data = {'noteId': note_id, 'reaction': reaction}\n        return bool(await self.http.request(Route('POST', '/api/reactions/create', json=data, auth=True)))\n\n    async def post_note(self,"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "f2fb1afdd950a072868a1a2c082801b820b6986d188beed33e2118e6e86c0caf"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyArgumentListInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unexpected argument",
+            "markdown": "Unexpected argument"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "mi/state.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 95,
+                  "charOffset": 1865,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "auth=True"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 44,
+                  "startColumn": 1,
+                  "charOffset": 1635,
+                  "charLength": 273,
+                  "snippet": {
+                    "text": "    async def add_reaction_to_note(self, note_id: str, reaction: str) -> bool:\n        data = {'noteId': note_id, 'reaction': reaction}\n        return bool(await self.http.request(Route('POST', '/api/reactions/create', json=data, auth=True)))\n\n    async def post_note(self,"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "f4bb497bb0f56a4bb965a92fd00c1e8a9273db9150207ea70252cd64e7079f73"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyArgumentListInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unexpected argument",
+            "markdown": "Unexpected argument"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
                   "uri": "mi/client.py",
                   "uriBaseId": "SRCROOT"
                 },
@@ -8813,8 +8820,8 @@
         }
       ],
       "automationDetails": {
-        "id": "project - 12/29/21, 7:38 AM",
-        "guid": "7ce6c33f-faa3-44af-adef-c4f2353ea099"
+        "id": "project - 12/29/21, 11:32 PM",
+        "guid": "87b6d118-9d01-49e8-a0aa-a1adc6b83e0e"
       },
       "newlineSequences": [
         "\r\n",
