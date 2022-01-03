@@ -654,11 +654,11 @@
       "type": "file",
       "path": "mi/state.py",
       "language": "Python",
-      "line": 307,
+      "line": 312,
       "offset": 9,
       "length": 23,
       "code": {
-        "startLine": 305,
+        "startLine": 310,
         "length": 23,
         "offset": 127,
         "surroundingCode": "        note = Note(message, state=self)\n        # Router(self.http.ws).capture_message(note.id) TODO: capture message\n        self.client._on_message(note)\n\n    async def follow_user(self, user_id: str) -> tuple[bool, Optional[str]]:"
@@ -669,7 +669,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "d75b81a6dafa60804f45ddf7029d8e50ecb1bb5acb78c061178f41e6c0dc3494"
+  "hash": "d010b9fdaf7b86d94e303a6a04dbdb9009311b450df5ed4ecf3d2c87ce08f7e8"
 },{
   "tool": "Code Inspection",
   "category": "Python",
