@@ -12,12 +12,12 @@
       "language": "Python",
       "line": 34,
       "offset": 24,
-      "length": 34,
+      "length": 36,
       "code": {
         "startLine": 32,
-        "length": 34,
+        "length": 36,
         "offset": 72,
-        "surroundingCode": "\nclass BotBase(CommandManager, AbstractBotBase):\n    def __init__(self, command_prefix: Optional[str]=None, **options: Dict[Any, Any]):\n        \"\"\"\n        .. deprecated:: v2.3.0"
+        "surroundingCode": "\nclass BotBase(CommandManager, AbstractBotBase):\n    def __init__(self, command_prefix: Optional[str] = None, **options: Dict[Any, Any]):\n        \"\"\"\n        .. deprecated:: v2.3.0"
       }
     }
   ],
@@ -25,7 +25,7 @@
     "module": "project",
     "inspectionName": "PyUnusedLocalInspection"
   },
-  "hash": "2a81c8f2b6f579423935a1f918d74d05bf3407c10b92c1fd2ebd260a6668dd87"
+  "hash": "10df4f39488058d9e1ecf0952f09be959df90e0ff89e0ec1ce6e23df86191020"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -585,7 +585,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "1591c8db08cdc55bcce7071151fe0c7969aafa7e06625d103dc680fa3186921f"
+  "hash": "e148f8ce1f3077c2f9a85f6953585c314b831609dc9e321c5147027dfad68c64"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -613,7 +613,7 @@
     "module": "project",
     "inspectionName": "PyProtectedMemberInspection"
   },
-  "hash": "8fd0d3f8dbadc3dbb41ba9d4d5c5ba2f6c45e2a5a8c8dc802a4fad76357e1848"
+  "hash": "27a3c969b5119c051e46691582ef20663f46a1e47a0a82aeaece0abd795cc184"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -753,7 +753,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "ca4838c3e3cf5366f3d4448518c856c45780a4975908d59d895adafdf9a569a2"
+  "hash": "f698837cf9919a74b850b7961018e4892fcdaad813116e89c33d45553c62317d"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -781,7 +781,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "cf633abe70fd1c3435550ad157a439be2da0b33507649051d9d6f460a563c255"
+  "hash": "12398ef5743b4fa872415f1f2ec59cf5bdd2aa2581149070078b274fd4074844"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -794,11 +794,11 @@
       "type": "file",
       "path": "mi/models/user.py",
       "language": "Python",
-      "line": 77,
+      "line": 76,
       "offset": 39,
       "length": 4,
       "code": {
-        "startLine": 75,
+        "startLine": 74,
         "length": 4,
         "offset": 170,
         "surroundingCode": "        self.is_blocked: bool = bool(data.get(\"is_blocked\", False))\n        self.is_muted: bool = bool(data.get(\"is_muted\", False))\n        self.details = RawUserDetails(data)\n        self.instance = RawInstance(**data[\"instance\"]) if data.get(\"instance\") else None\n"
@@ -809,7 +809,7 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "b926ea18a27388ae0664a11a896ee99238308eb92d39c5c0d5007479a5acf834"
+  "hash": "3a9ebc3274b550c090c134c28c0f82c1bba886f2fbf713a8d9ca3842c7ae2455"
 },{
   "tool": "Code Inspection",
   "category": "Python",

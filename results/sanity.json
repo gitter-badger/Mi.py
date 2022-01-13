@@ -228,12 +228,12 @@
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 842,
+      "length": 843,
       "code": {
         "startLine": 1,
-        "length": 842,
+        "length": 843,
         "offset": 0,
-        "surroundingCode": "from __future__ import annotations\nimport asyncio\nfrom typing import TYPE_CHECKING\n\nfrom mi.http import HTTPClient, Route\n\nif TYPE_CHECKING:\n    from mi.client import ConnectionState\n\n\nclass FavoriteManager:\n    def __init__(self, client: 'ConnectionState', http: HTTPClient, loop: asyncio.AbstractEventLoop):\n        self.client: 'ConnectionState' = client\n        self.http: HTTPClient = http\n        self.loop: asyncio.AbstractEventLoop = loop\n\n    async def add(self, note_id: str) -> bool:\n        data = {'noteId': note_id}\n        return bool(await self.http.request(Route('POST', '/api/notes/favorites/create'), json=data, auth=True))\n\n    async def remove(self, note_id: str) -> bool:\n        data = {'noteId': note_id}\n        return bool(await self.http.request(Route('POST', '/api/notes/favorites/delete'), json=data, auth=True))"
+        "surroundingCode": "from __future__ import annotations\n\nimport asyncio\nfrom typing import TYPE_CHECKING\n\nfrom mi.http import HTTPClient, Route\n\nif TYPE_CHECKING:\n    from mi.client import ConnectionState\n\n\nclass FavoriteManager:\n    def __init__(self, client: 'ConnectionState', http: HTTPClient, loop: asyncio.AbstractEventLoop):\n        self.client: 'ConnectionState' = client\n        self.http: HTTPClient = http\n        self.loop: asyncio.AbstractEventLoop = loop\n\n    async def add(self, note_id: str) -> bool:\n        data = {'noteId': note_id}\n        return bool(await self.http.request(Route('POST', '/api/notes/favorites/create'), json=data, auth=True))\n\n    async def remove(self, note_id: str) -> bool:\n        data = {'noteId': note_id}\n        return bool(await self.http.request(Route('POST', '/api/notes/favorites/delete'), json=data, auth=True))"
       }
     }
   ],
@@ -241,7 +241,7 @@
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "3641074456876176845"
+  "hash": "-2511460974289688041"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -292,14 +292,14 @@
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 7306
+      "length": 7300
     }
   ],
   "attributes": {
     "module": "project",
     "inspectionName": "PyInterpreterInspection"
   },
-  "hash": "6673409956006703552"
+  "hash": "4332996681423209611"
 },{
   "tool": "Code Inspection",
   "category": "Python",
