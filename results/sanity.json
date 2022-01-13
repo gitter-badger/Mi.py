@@ -1,721 +1,609 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'aiohttp'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "mi/abc/ext/bot.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 2079
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "-7382575339229258454"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/abc/ext/__init__.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 19,
+      "line": 6,
+      "offset": 5,
+      "length": 7,
       "code": {
-        "startLine": 1,
-        "length": 19,
-        "offset": 0,
-        "surroundingCode": "from .bot import *"
+        "startLine": 4,
+        "length": 7,
+        "offset": 73,
+        "surroundingCode": "from typing import Any, Callable, Coroutine, Dict, Optional, Tuple\n\nfrom aiohttp.client_ws import ClientWebSocketResponse\n\n"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "3983400003585246564"
+  "hash": "-523767536775350413"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'ClientWebSocketResponse'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "mi/abc/chat.py",
+      "path": "mi/abc/ext/bot.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 242,
+      "line": 6,
+      "offset": 30,
+      "length": 23,
       "code": {
-        "startLine": 1,
-        "length": 242,
-        "offset": 0,
-        "surroundingCode": "from abc import ABC, abstractmethod\n\n\nclass AbstractChat(ABC):\n    @abstractmethod\n    async def send(self) -> 'AbstractChatContent':\n        pass\n\n\nclass AbstractChatContent(ABC):\n    @abstractmethod\n    async def delete(self):\n        pass"
+        "startLine": 4,
+        "length": 23,
+        "offset": 98,
+        "surroundingCode": "from typing import Any, Callable, Coroutine, Dict, Optional, Tuple\n\nfrom aiohttp.client_ws import ClientWebSocketResponse\n\n\nclass AbstractBotBase:\n    @abstractmethod\n    async def _on_message(self, message):"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "-5946059918899145350"
+  "hash": "-8925984524421530831"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/abc/note.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 486,
-      "code": {
-        "startLine": 1,
-        "length": 486,
-        "offset": 0,
-        "surroundingCode": "from abc import ABC, abstractmethod\n\n\nclass AbstractNote(ABC):\n    @abstractmethod\n    def emoji_count(self) -> int:\n        \"\"\"\n        ノートの本文にemojiが何個含まれているかを返します\n\n        Returns\n        -------\n        int\n            含まれている絵文字の数\n        \"\"\"\n\n    @abstractmethod\n    async def delete(self) -> bool:\n        \"\"\"\n        指定したIDのノートを削除します\n\n        returns\n        -------\n        is_success: bool\n            成功したか否か\n        status_code: int\n            HTTP レスポンスステータスコード\n        \"\"\""
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "8338655035868016016"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/abc/__init__.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 59,
-      "code": {
-        "startLine": 1,
-        "length": 59,
-        "offset": 0,
-        "surroundingCode": "from .chat import *\nfrom .ext import *\nfrom .note import *"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "-6894873238003623521"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/ext/tasks/__init__.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 1764,
-      "code": {
-        "startLine": 1,
-        "length": 1764,
-        "offset": 0,
-        "surroundingCode": "import asyncio\nfrom typing import Any, Callable, Coroutine, Dict, Optional\n\nfrom mi.exception import TaskNotRunningError\n\n__all__ = [\"Loop\", \"loop\"]\n\n\nclass Loop:\n    def __init__(self, func: Callable[..., Coroutine[Any, Any, Any]], seconds: int = 60,\n                 custom_loop: Optional[asyncio.AbstractEventLoop] = None):\n        self.seconds: int = seconds\n        self.func: Callable[..., Coroutine[Any, Any, Any]] = func\n        self._task: Optional[asyncio.Task[Any]] = None\n        self.stop_next_iteration = None\n        self._loop: Optional[asyncio.AbstractEventLoop] = custom_loop\n\n    def start(self, *args: tuple[Any], **kwargs: Dict[Any, Any]) -> asyncio.Task[Any]:\n        \"\"\"\n        タスクを開始する\n\n        Parameters\n        ----------\n        args : Any\n        kwargs : Any\n\n        Returns\n        -------\n        _task : asyncio.Task[Any]\n        \"\"\"\n        _loop = asyncio.get_running_loop() if self._loop is None else self._loop  # self._loop が無いなら取得\n        self._task = _loop.create_task(self.task(*args, **kwargs))\n        return self._task\n\n    def stop(self):\n        \"\"\"\n        タスクを停止\n        \"\"\"\n\n        if self._task is None:\n            raise TaskNotRunningError('タスクは起動していません')\n\n        if not self._task.done():\n            self.stop_next_iteration = True\n\n    async def task(self, *args: tuple[Any], **kwargs: Dict[Any, Any]):\n        while True:\n            if self.stop_next_iteration:\n                return\n            await self.func(self.seconds, *args, **kwargs)\n            await asyncio.sleep(self.seconds)\n\n\ndef loop(n: int, custom_loop: Optional[asyncio.AbstractEventLoop] = None):\n    def _deco(f: Callable[..., Coroutine[Any, Any, Any]]) -> Loop:\n        return Loop(f, n, custom_loop=custom_loop)\n\n    return _deco"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "-3463920143755262265"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'aiohttp'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "mi/ext/commands/bot.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 7306
+      "line": 27,
+      "offset": 9,
+      "length": 7,
+      "code": {
+        "startLine": 25,
+        "length": 7,
+        "offset": 28,
+        "surroundingCode": "\nif TYPE_CHECKING:\n    from aiohttp.client_ws import ClientWebSocketResponse\n    from mi.ext import Cog\n"
+      }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "6673409956006703552"
+  "hash": "-1706632047199865921"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Module 'ClientWebSocketResponse' not found",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/commands/bot.py",
+      "language": "Python",
+      "line": 27,
+      "offset": 34,
+      "length": 23,
+      "code": {
+        "startLine": 25,
+        "length": 23,
+        "offset": 53,
+        "surroundingCode": "\nif TYPE_CHECKING:\n    from aiohttp.client_ws import ClientWebSocketResponse\n    from mi.ext import Cog\n\n__all__ = [\"BotBase\", \"Bot\"]"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "7775218344591340219"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved attribute reference '_eject' for class 'Cog'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/commands/bot.py",
+      "language": "Python",
+      "line": 154,
+      "offset": 12,
+      "length": 6,
+      "code": {
+        "startLine": 152,
+        "length": 6,
+        "offset": 32,
+        "surroundingCode": "            return\n\n        cog._eject(self)\n\n        return cog"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "5691193706955178652"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved attribute reference 'setup' for class 'ModuleType'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/commands/bot.py",
+      "language": "Python",
+      "line": 160,
+      "offset": 25,
+      "length": 5,
+      "code": {
+        "startLine": 158,
+        "length": 5,
+        "offset": 107,
+        "surroundingCode": "    def _load_from_module(self, spec: ModuleType, key: str) -> None:\n        try:\n            setup = spec.setup\n        except AttributeError:\n            raise NoEntryPointError(f\"{key} にsetupが存在しません\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "-4494790026829030837"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Class '(Any)' does not define '__setitem__', so the '[]' operator cannot be used on its instances",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "mi/ext/commands/cog.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 3695
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "8831789381222503117"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/ext/commands/core.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 973,
+      "line": 16,
+      "offset": 13,
+      "length": 1,
       "code": {
-        "startLine": 1,
-        "length": 973,
-        "offset": 0,
-        "surroundingCode": "import asyncio\nfrom typing import Dict\n\nfrom mi.ext.commands._types import _BaseCommand\n\n\nclass CommandManager:\n    def __init__(self, *args, **kwargs):\n        self.all_commands: Dict[str, Command] = {}\n        super().__init__(*args, **kwargs)  # Clientクラスを初期化する\n\n    def add_command(self, command: 'Command'):\n        if not isinstance(command, Command):\n            raise TypeError(f'{command}はCommandクラスである必要があります')\n\n        self.all_commands[command.regex] = command\n\n\nclass Command(_BaseCommand):\n    def __init__(self, func, regex: str, **kwargs):\n        if not asyncio.iscoroutinefunction(func):\n            raise TypeError(f'{func}はコルーチンでなければなりません')\n        self.regex: str = regex\n        self.callback = func\n\n    async def invoke(self, ctx, *args, **kwargs):\n        await self.callback(self, ctx, *args, **kwargs)\n\n\ndef mention_command(regex: str):\n    def decorator(func, **kwargs):\n        return Command(func, regex=regex, **kwargs)\n\n    return decorator"
+        "startLine": 14,
+        "length": 1,
+        "offset": 114,
+        "surroundingCode": "    def __new__(cls, *args: Tuple[Any], **kwargs: Dict[str, Any]):\n        name, bases, attrs = args\n        attrs['__cog_name__'] = kwargs.pop(\"name\", name)\n        attrs['__cog_settings__'] = kwargs.pop(\"command_attrs\", {})\n        listeners = {}"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "-702374138728925849"
+  "hash": "4785023931847927593"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Class '(Any)' does not define '__setitem__', so the '[]' operator cannot be used on its instances",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/commands/cog.py",
+      "language": "Python",
+      "line": 17,
+      "offset": 13,
+      "length": 1,
+      "code": {
+        "startLine": 15,
+        "length": 1,
+        "offset": 104,
+        "surroundingCode": "        name, bases, attrs = args\n        attrs['__cog_name__'] = kwargs.pop(\"name\", name)\n        attrs['__cog_settings__'] = kwargs.pop(\"command_attrs\", {})\n        listeners = {}\n        commands = {}"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "-2619394791126357834"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Cannot find reference '__cog_listener_names__' in '(...) -> Any | (...) -> Coroutine'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/ext/commands/cog.py",
+      "language": "Python",
+      "line": 83,
+      "offset": 23,
+      "length": 22,
+      "code": {
+        "startLine": 81,
+        "length": 22,
+        "offset": 88,
+        "surroundingCode": "            to_assign = name or actual.__name__\n            try:\n                actual.__cog_listener_names__.append(to_assign)\n            except AttributeError:\n                actual.__cog_listener_names__ = [to_assign]"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "-2629571643125026633"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference 'ExpectedClosingQuoteError'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "mi/ext/commands/view.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 5815
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "-6012629680295664133"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/ext/commands/_types.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 39,
+      "line": 145,
+      "offset": 26,
+      "length": 25,
       "code": {
-        "startLine": 1,
-        "length": 39,
-        "offset": 0,
-        "surroundingCode": "class _BaseCommand:\n    __slots__ = ()"
+        "startLine": 143,
+        "length": 25,
+        "offset": 93,
+        "surroundingCode": "                if is_quoted:\n                    # unexpected EOF\n                    raise ExpectedClosingQuoteError(close_quote)\n                return \"\".join(result)\n"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "-5419606406837993300"
+  "hash": "4093434177615791252"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'ExpectedClosingQuoteError'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "mi/ext/commands/__init__.py",
+      "path": "mi/ext/commands/view.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 78,
+      "line": 156,
+      "offset": 30,
+      "length": 25,
       "code": {
-        "startLine": 1,
-        "length": 78,
-        "offset": 0,
-        "surroundingCode": "from .cog import *\nfrom .core import *\nfrom .bot import *\nfrom .view import *"
+        "startLine": 154,
+        "length": 25,
+        "offset": 143,
+        "surroundingCode": "                    if is_quoted:\n                        # if we're quoted then we're expecting a closing quote\n                        raise ExpectedClosingQuoteError(close_quote)\n                    # if we aren't then we just let it through\n                    return \"\".join(result)"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "-3987798209431645852"
+  "hash": "9188920636823446698"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'UnexpectedQuoteError'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "mi/ext/__init__.py",
+      "path": "mi/ext/commands/view.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 45,
+      "line": 171,
+      "offset": 22,
+      "length": 20,
       "code": {
-        "startLine": 1,
-        "length": 45,
-        "offset": 0,
-        "surroundingCode": "from .commands import *\nfrom .tasks import *"
+        "startLine": 169,
+        "length": 20,
+        "offset": 114,
+        "surroundingCode": "            if not is_quoted and current in _all_quotes:\n                # we aren't quoted\n                raise UnexpectedQuoteError(current)\n\n            # closing quote"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "-5358464658782618377"
+  "hash": "8680210887934405435"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'InvalidEndOfQuotedStringError'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "mi/types/bot.py",
+      "path": "mi/ext/commands/view.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 396,
+      "line": 178,
+      "offset": 26,
+      "length": 29,
       "code": {
-        "startLine": 1,
-        "length": 396,
-        "offset": 0,
-        "surroundingCode": "from abc import ABC, abstractmethod\nfrom typing import Any, Dict, Optional\n\n\nclass AbstractBotBase(ABC):\n    @abstractmethod\n    async def dispatch(self, event_name: Optional[str] = None, *args: tuple[Any], **kwargs: Dict[Any, Any]):\n        pass\n\n    @abstractmethod\n    async def event_dispatch(self, event_name: Optional[str] = None, *args: tuple[Any], **kwargs: Dict[Any, Any]):\n        pass"
+        "startLine": 176,
+        "length": 29,
+        "offset": 125,
+        "surroundingCode": "                valid_eof = not next_char or next_char.isspace()\n                if not valid_eof:\n                    raise InvalidEndOfQuotedStringError(next_char)\n\n                # we're quoted so it's okay"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "2989453086340100170"
+  "hash": "2315342531971629336"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unused import statement <code>from dataclasses import dataclass</code>",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "mi/types/chat.py",
+      "path": "mi/models/user.py",
       "language": "Python",
       "line": 1,
       "offset": 0,
-      "length": 280,
+      "length": 33,
       "code": {
         "startLine": 1,
-        "length": 280,
+        "length": 33,
         "offset": 0,
-        "surroundingCode": "from typing import List, TypedDict\n\nfrom mi.types.user import User\n\n\nclass Chat(TypedDict):\n    id: str\n    created_at: str\n    text: str\n    user_id: str\n    user: User\n    recipient_id: str\n    recipient: str\n    group_id: str\n    file_id: str\n    is_read: bool\n    reads: List"
+        "surroundingCode": "from dataclasses import dataclass\nfrom typing import List, Optional\n\nfrom mi.models.instance import RawInstance"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "-8253008773988716331"
+  "hash": "-6760465316459842"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/note.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 2135
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "6218157293802994585"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/user.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 2686
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "5583776657291293191"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/drive.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 684,
-      "code": {
-        "startLine": 1,
-        "length": 684,
-        "offset": 0,
-        "surroundingCode": "from typing import Any, Dict, TypedDict\n\n\nclass Properties(TypedDict):\n    \"\"\"\n    プロパティー情報\n    \"\"\"\n\n    width: int\n    height: int\n    avgColor: str\n\n\nclass Folder(TypedDict):\n    \"\"\"\n    フォルダーの情報\n    \"\"\"\n\n    id: str\n    created_at: str\n    name: str\n    folders_count: int\n    files_count: int\n    parent_id: str\n    parent: Dict[str, Any]\n\n\nclass File(TypedDict):\n    \"\"\"\n    ファイル情報\n    \"\"\"\n\n    id: str\n    created_at: str\n    name: str\n    type: str\n    md5: str\n    size: int\n    is_sensitive: bool\n    blurhash: str\n    properties: Properties\n    url: str\n    thumbnail_url: str\n    comment: str\n    folder_id: str\n    folder: Folder\n    user_id: str\n    user: Dict[str, Any]"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "1839708286401909958"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/emoji.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 225,
-      "code": {
-        "startLine": 1,
-        "length": 225,
-        "offset": 0,
-        "surroundingCode": "from typing import List, Optional, TypedDict\n\n\nclass Emoji(TypedDict):\n    id: Optional[str]\n    aliases: Optional[List[str]]\n    name: Optional[str]\n    category: Optional[str]\n    host: Optional[str]\n    url: Optional[str]"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "647183352033141190"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/__init__.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 163,
-      "code": {
-        "startLine": 1,
-        "length": 163,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\nmi.types\n\"\"\"\n\nfrom .bot import *\nfrom .chat import *\nfrom .drive import *\nfrom .emoji import *\nfrom .instance import *\nfrom .note import *\nfrom .user import *"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "4232395920433563973"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/types/instance.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 1776,
-      "code": {
-        "startLine": 1,
-        "length": 1776,
-        "offset": 0,
-        "surroundingCode": "from __future__ import annotations\n\nfrom typing import List, Optional, TYPE_CHECKING, TypedDict\n\nif TYPE_CHECKING:\n    from mi.types import Emoji\n\n\nclass Features:\n    registration: bool\n    local_time_line: bool\n    global_time_line: bool\n    email_required_for_signup: bool\n    elasticsearch: bool\n    hcaptcha: bool\n    recaptcha: bool\n    object_storage: bool\n    twitter: bool\n    github: bool\n    github: bool\n    discord: bool\n    service_worker: bool\n    miauth: bool\n\n\nclass OptionalMeta(TypedDict, total=False):\n    pinned_page: List[str]\n    cache_remote_files: bool\n    proxy_remote_files: bool\n    require_setup: bool\n    features: Features\n\n\nclass Meta(OptionalMeta):\n    maintainer_name: str\n    maintainer_email: str\n    version: str\n    name: str\n    uri: str\n    description: str\n    langs: List[str]\n    tos_url: Optional[str]\n    repository_url: str\n    feedback_url: str\n    secure: bool\n    disable_registration: bool\n    disable_local_timeline: bool\n    disable_global_timeline: bool\n    drive_capacity_per_local_user_mb: int\n    drive_capacity_per_remote_user_mb: int\n    email_required_for_signup: bool\n    enable_hcaptcha: bool\n    enable_recaptcha: bool\n    recaptcha_site_key: str\n    sw_publickey: str\n    mascot_image_url: str\n    error_image_url: str\n    max_note_text_length: int\n    emojis: List[Emoji]\n    ads: list\n    enable_email: bool\n    enable_twitter_integration: bool\n    enable_github_integration: bool\n    enable_discord_integration: bool\n    enable_service_worker: bool\n    translator_available: bool\n\n\nclass OptionalInstance(TypedDict, total=False):\n    host: str\n    software_name: str\n    software_version: str\n    icon_url: str\n    favicon_url: str\n    theme_color: str\n\n\nclass Instance(OptionalInstance, Meta):\n    meta: Meta"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "-1672172425271421958"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "mi/chat.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 1189,
-      "code": {
-        "startLine": 1,
-        "length": 1189,
-        "offset": 0,
-        "surroundingCode": "from __future__ import annotations\n\nfrom typing import List, TYPE_CHECKING\n\nfrom .abc.chat import AbstractChatContent\nfrom .types.chat import Chat as ChatPayload\nfrom .user import User\n\n__all__ = ['Chat']\n\nif TYPE_CHECKING:\n    from mi.state import ConnectionState\n\n\nclass Chat(AbstractChatContent):\n    \"\"\"\n    チャットオブジェクト\n    \"\"\"\n\n    def __init__(self, data: ChatPayload, state: ConnectionState):\n        self.id: str = data[\"id\"]\n        self.created_at: str = data[\"created_at\"]\n        self.content: str = data[\"text\"]\n        self.user_id: str = data[\"user_id\"]\n        self.author: User = User(data[\"user\"], state=state)\n        self.recipient_id: str = data[\"recipient_id\"]\n        self.recipient: str = data[\"recipient\"]\n        self.group_id: str = data[\"group_id\"]\n        self.file_id: str = data[\"file_id\"]\n        self.is_read: bool = data[\"is_read\"]\n        self.reads: List = data[\"reads\"]\n        self._state = state\n\n    async def delete(self) -> bool:\n        \"\"\"\n        チャットを削除します（チャットの作者である必要があります）\n\n        Returns\n        -------\n        bool:\n            成功したか否か\n        \"\"\"\n        res = await self._state.delete_chat(message_id=self.id)\n        return bool(res)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "8353087150260882457"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Python",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "No module named 'aiohttp'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "mi/http.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 4263
+      "line": 7,
+      "offset": 7,
+      "length": 7,
+      "code": {
+        "startLine": 5,
+        "length": 7,
+        "offset": 47,
+        "surroundingCode": "from typing import Any, Dict, Optional\n\nimport aiohttp\n\nfrom mi.gateway import MisskeyClientWebSocketResponse\nfrom mi.utils import remove_dict_empty, upper_to_lower\nfrom . import __version__, config, exception"
+      }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "8107323043423607597"
+  "hash": "7402005466768699327"
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Python",
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved attribute reference 'follow_user' for class 'ConnectionState'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "mi/note.py",
       "language": "Python",
-      "line": 1,
-      "offset": 0,
-      "length": 13624
+      "line": 42,
+      "offset": 33,
+      "length": 11,
+      "code": {
+        "startLine": 40,
+        "length": 11,
+        "offset": 109,
+        "surroundingCode": "        if self.id:\n            raise NotExistRequiredData('user_idがありません')\n        return await self._state.follow_user(user_id=self.id)\n\n    async def unfollow(self, user_id: Optional[str] = None) -> bool:"
+      }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyInterpreterInspection"
+    "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "207188441821805200"
+  "hash": "8694995475221388627"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved attribute reference 'unfollow_user' for class 'ConnectionState'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/note.py",
+      "language": "Python",
+      "line": 61,
+      "offset": 33,
+      "length": 13,
+      "code": {
+        "startLine": 59,
+        "length": 13,
+        "offset": 96,
+        "surroundingCode": "        if user_id is None:\n            user_id = self.user.id\n        return await self._state.unfollow_user(user_id)\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "-871076916140566621"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference 'id'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/note.py",
+      "language": "Python",
+      "line": 273,
+      "offset": 4,
+      "length": 2,
+      "code": {
+        "startLine": 271,
+        "length": 2,
+        "offset": 35,
+        "surroundingCode": "    Attributes\n    -----------\n    id: str \n    created_at: str\n    user_id: str"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "-1476116858418506511"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Python",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference 'created_at'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "mi/note.py",
+      "language": "Python",
+      "line": 274,
+      "offset": 4,
+      "length": 10,
+      "code": {
+        "startLine": 272,
+        "length": 10,
+        "offset": 33,
+        "surroundingCode": "    -----------\n    id: str \n    created_at: str\n    user_id: str\n    author: User"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "2672223202437764741"
 }]}
