@@ -4,6 +4,7 @@
     "Plain text",
     "Cython",
     "SVG",
+    "XML",
     ".gitignore (GitIgnore)"
   ]
 }
